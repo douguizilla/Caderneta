@@ -13,4 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-Caderneta/app/src/main/AndroidManifest.xml
+Caderneta/**/AndroidManifest.xml
