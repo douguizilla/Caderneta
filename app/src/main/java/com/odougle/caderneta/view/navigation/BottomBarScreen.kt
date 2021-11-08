@@ -9,35 +9,41 @@ import androidx.compose.ui.graphics.vector.ImageVector
 sealed class BottomBarScreen(
     val route: String,
     val title: String,
-    val icon: ImageVector
+    val icon: ImageVector,
+    val contentDescription: String
 ){
     object Home: BottomBarScreen(
         route = "home",
         title = "Início",
-        icon = Icons.Default.List
+        icon = Icons.Default.List,
+        contentDescription = "Tela inicial"
     )
 
     object Income: BottomBarScreen(
         route = "income",
         title = "Receitas",
-        icon = Icons.Default.List
+        icon = Icons.Default.List,
+        contentDescription = "Tela das suas receitas"
     )
 
     object AddBill: BottomBarScreen(
         route = "addBill",
         title = "Add",
-        icon = Icons.Default.Add
+        icon = Icons.Default.Add,
+        contentDescription = "Botão para adicionar novas despesas, receitas ou metas"
     )
 
     object Outlay: BottomBarScreen(
         route = "outlay",
         title = "Despesas",
-        icon = Icons.Default.List
+        icon = Icons.Default.List,
+        contentDescription = "Tela das suas despesas"
     )
 
     object Goals: BottomBarScreen(
         route = "goals",
         title = "Metas",
-        icon = Icons.Default.Info
+        icon = Icons.Default.Info,
+        contentDescription = "Tela das suas metas"
     )
 }

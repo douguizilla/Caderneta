@@ -32,8 +32,5 @@ fun BottomNavGraph(navHostController: NavHostController) {
         composable(route = BottomBarScreen.Goals.route){
             GoalsScreen()
         }
-
-
-
     }
 }
