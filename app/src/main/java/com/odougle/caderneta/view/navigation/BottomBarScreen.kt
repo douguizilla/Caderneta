@@ -23,8 +23,8 @@ sealed class BottomBarScreen(
         icon = Icons.Default.List
     )
 
-    object NewBill: BottomBarScreen(
-        route = "newBill",
+    object AddBill: BottomBarScreen(
+        route = "addBill",
         title = "Add",
         icon = Icons.Default.Add
     )
@@ -40,8 +40,4 @@ sealed class BottomBarScreen(
         title = "Metas",
         icon = Icons.Default.Info
     )
-
-
-
-
 }
