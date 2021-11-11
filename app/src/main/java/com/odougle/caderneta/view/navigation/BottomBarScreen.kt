@@ -1,9 +1,7 @@
 package com.odougle.caderneta.view.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class BottomBarScreen(
@@ -22,7 +20,7 @@ sealed class BottomBarScreen(
     object Income: BottomBarScreen(
         route = "income",
         title = "Receitas",
-        icon = Icons.Default.List,
+        icon = Icons.Default.More,
         contentDescription = "Tela das suas receitas"
     )
 
@@ -36,14 +34,14 @@ sealed class BottomBarScreen(
     object Outlay: BottomBarScreen(
         route = "outlay",
         title = "Despesas",
-        icon = Icons.Default.List,
+        icon = Icons.Default.Minimize,
         contentDescription = "Tela das suas despesas"
     )
 
     object Goals: BottomBarScreen(
         route = "goals",
         title = "Metas",
-        icon = Icons.Default.Info,
+        icon = Icons.Default.Upgrade,
         contentDescription = "Tela das suas metas"
     )
 }
