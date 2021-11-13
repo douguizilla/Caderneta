@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination
@@ -56,7 +57,7 @@ fun RowScope.AddItem(
 ) {
     BottomNavigationItem(
         label = { Text(text = screen.title, fontSize = 10.sp) },
-        icon = { Icon(imageVector = screen.icon, contentDescription = screen.contentDescription)},
+        icon = { Icon(painter = painterResource(id = screen.icon), contentDescription = screen.contentDescription)},
         selected = currentDestination?.hierarchy?.any {
                       it.route == screen.route
         } == true,
