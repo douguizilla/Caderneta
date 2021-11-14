@@ -1,11 +1,20 @@
 package com.odougle.caderneta.view
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -35,10 +44,16 @@ fun BottomBar(navcontroler: NavHostController) {
         BottomBarScreen.Goals
     )
 
+
     val navBackStackEntry by navcontroler.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
-    BottomNavigation {
+    val shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
+    BottomNavigation(
+        modifier = Modifier.clip(shape),
+        backgroundColor = Color.LightGray,
+        elevation = 10.dp
+    ) {
         screens.forEach { screen ->
             AddItem(
                 screen = screen,
