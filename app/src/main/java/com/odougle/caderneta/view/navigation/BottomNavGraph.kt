@@ -1,5 +1,6 @@
 package com.odougle.caderneta.view.navigation
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -7,6 +8,7 @@ import androidx.navigation.compose.composable
 import com.odougle.caderneta.view.screens.*
 import com.odougle.caderneta.view.screens.HomeScreen
 
+@ExperimentalMaterialApi
 @Composable
 fun BottomNavGraph(navHostController: NavHostController) {
     NavHost(

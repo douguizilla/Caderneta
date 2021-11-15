@@ -1,18 +1,81 @@
 package com.odougle.caderneta.view.screens
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import com.odougle.caderneta.R
+import kotlinx.coroutines.launch
 
+@ExperimentalMaterialApi
 @Composable
 fun AddBillScreen() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+    val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
+        bottomSheetState = BottomSheetState(BottomSheetValue.Collapsed)
+    )
+
+    val coroutineScope = rememberCoroutineScope()
+
+    BottomSheetScaffold(scaffoldState = bottomSheetScaffoldState,
+        sheetContent = {
+            AddItems()
+        }
     ) {
-        Text(text = "ADICIONAR")
+        coroutineScope.launch {
+            bottomSheetScaffoldState.bottomSheetState.expand()
+        }
     }
+}
+
+@Composable
+fun AddItems() {
+    val shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp)
+            .clip(shape)
+            .padding(16.dp)
+    ) {
+        AddBottomSheetItem(
+            drawableIconId = R.drawable.ic_income,
+            contentDescription = "Adicionar receita",
+            spacerHeight = 16.dp
+        )
+
+        AddBottomSheetItem(
+            drawableIconId = R.drawable.ic_outlay,
+            contentDescription = "Adicionar receita",
+            spacerHeight = 16.dp
+        )
+
+        AddBottomSheetItem(
+            drawableIconId = R.drawable.ic_goals,
+            contentDescription = "Adicionar receita",
+            spacerHeight = 16.dp
+        )
+
+    }
+
+}
+
+@Composable
+fun AddBottomSheetItem(
+    drawableIconId: Int,
+    contentDescription: String,
+    spacerHeight: Dp
+) {
+    Row{
+        Icon(painter = painterResource(id = drawableIconId), contentDescription = contentDescription)
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(text = contentDescription)
+    }
+    Spacer(modifier = Modifier.height(spacerHeight))
 }
