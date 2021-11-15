@@ -27,15 +27,36 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.odougle.caderneta.view.navigation.BottomBarScreen
 import com.odougle.caderneta.view.navigation.BottomNavGraph
+import com.odougle.caderneta.view.screens.AddBillScreen
 
+@ExperimentalMaterialApi
 @Composable
 fun MainScreen() {
+    val shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
     val navController = rememberNavController()
-    Scaffold(
-        bottomBar = { BottomBar(navcontroler = navController) }
+    val bottomState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
+
+    ModalBottomSheetLayout(
+        sheetState = bottomState,
+        sheetShape = shape,
+        sheetContent = {
+            AddBillScreen()
+        }
     ) {
-        BottomNavGraph(navHostController = navController)
+        Scaffold(
+            bottomBar = {
+                BottomBar(navcontroler = navController)
+            }
+        ) {
+            BottomNavGraph(navHostController = navController)
+        }
     }
+
+    /*
+    https://stackoverflow.com/questions/67744381/jetpack-compose-scaffold-modal-bottom-sheet
+    preciso colocar a bottom sheet pra aparecer na frente da bottom nav
+     */
+
 }
 
 @Composable
@@ -103,11 +124,13 @@ fun RowScope.AddItem(
         },
         selected = isSelected,
         onClick = {
-            navcontroler.navigate(screen.route)
+            if(screen.route != "addBill")
+                navcontroler.navigate(screen.route)
         })
 
 }
 
+@ExperimentalMaterialApi
 @Preview
 @Composable
 fun MainScreenPreview() {

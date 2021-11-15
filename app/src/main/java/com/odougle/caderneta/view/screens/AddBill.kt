@@ -53,13 +53,13 @@ fun AddItems() {
 
         AddBottomSheetItem(
             drawableIconId = R.drawable.ic_outlay,
-            contentDescription = "Adicionar receita",
+            contentDescription = "Adicionar despesa",
             spacerHeight = 16.dp
         )
 
         AddBottomSheetItem(
             drawableIconId = R.drawable.ic_goals,
-            contentDescription = "Adicionar receita",
+            contentDescription = "Adicionar meta",
             spacerHeight = 16.dp
         )
 
