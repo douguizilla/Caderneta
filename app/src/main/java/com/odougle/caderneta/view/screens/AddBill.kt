@@ -1,5 +1,6 @@
 package com.odougle.caderneta.view.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -72,7 +73,10 @@ fun AddBottomSheetItem(
     contentDescription: String,
     spacerHeight: Dp
 ) {
-    Row{
+    Row(
+        modifier = Modifier.fillMaxWidth().clickable {
+        }
+    ){
         Icon(painter = painterResource(id = drawableIconId), contentDescription = contentDescription)
         Spacer(modifier = Modifier.width(8.dp))
         Text(text = contentDescription)
