@@ -3,11 +3,15 @@ package com.odougle.caderneta.view
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
@@ -70,19 +74,42 @@ fun RowScope.AddItem(
     currentDestination: NavDestination?,
     navcontroler: NavHostController
 ) {
+    val isSelected = currentDestination?.hierarchy?.any {
+        it.route == screen.route
+    } == true
+
+    val iconBackgroundColor = if (isSelected) Color.White else Color.Transparent
+
+    val textColor = if (isSelected) Color.Black else Color.DarkGray
+
+    val iconColor = if (isSelected) Color.Black else Color.DarkGray
+
     BottomNavigationItem(
-        label = { Text(text = screen.title, fontSize = 10.sp) },
-        icon = { Icon(painter = painterResource(id = screen.icon), contentDescription = screen.contentDescription)},
-        selected = currentDestination?.hierarchy?.any {
-                      it.route == screen.route
-        } == true,
+        label = { Text(text = screen.title, fontSize = 10.sp, color = textColor) },
+        icon = {
+
+            Box(
+                modifier = Modifier
+                    .width(40.dp)
+                    .background(iconBackgroundColor, shape = RoundedCornerShape(8.dp)),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    painter = painterResource(id = screen.icon),
+                    contentDescription = screen.contentDescription,
+                    tint = iconColor
+                )
+            }
+        },
+        selected = isSelected,
         onClick = {
             navcontroler.navigate(screen.route)
         })
+
 }
 
 @Preview
 @Composable
-fun MainScreenPreview(){
+fun MainScreenPreview() {
     MainScreen()
 }
