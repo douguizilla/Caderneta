@@ -9,8 +9,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.AppBarDefaults.ContentPadding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.rounded.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,6 +33,9 @@ import androidx.navigation.compose.rememberNavController
 import com.odougle.caderneta.view.navigation.BottomBarScreen
 import com.odougle.caderneta.view.navigation.BottomNavGraph
 import com.odougle.caderneta.view.screens.AddBillScreen
+import com.odougle.caderneta.view.screens.AddItems
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
 @Composable
@@ -35,17 +43,60 @@ fun MainScreen() {
     val shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
     val navController = rememberNavController()
     val bottomState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
+    val coroutineScope = rememberCoroutineScope()
 
     ModalBottomSheetLayout(
         sheetState = bottomState,
         sheetShape = shape,
         sheetContent = {
-            AddBillScreen()
+            AddItems()
         }
     ) {
         Scaffold(
             bottomBar = {
-                BottomBar(navcontroler = navController)
+                BottomNavigation(
+                    modifier = Modifier.clip(shape)
+                ) {
+                    IconButton(onClick = {
+                        coroutineScope.launch{
+                            bottomState.show()
+                        }
+                    }) {
+                        Icon(Icons.Rounded.Add, contentDescription = "")
+                    }
+
+                    IconButton(onClick = {
+                        coroutineScope.launch{
+                            bottomState.show()
+                        }
+                    }) {
+                        Icon(Icons.Rounded.Add, contentDescription = "")
+                    }
+
+                    IconButton(onClick = {
+                        coroutineScope.launch{
+                            bottomState.show()
+                        }
+                    }) {
+                        Icon(Icons.Rounded.Add, contentDescription = "")
+                    }
+
+                    IconButton(onClick = {
+                        coroutineScope.launch{
+                            bottomState.show()
+                        }
+                    }) {
+                        Icon(Icons.Rounded.Add, contentDescription = "")
+                    }
+
+                    IconButton(onClick = {
+                        coroutineScope.launch{
+                            bottomState.show()
+                        }
+                    }) {
+                        Icon(Icons.Rounded.Add, contentDescription = "")
+                    }
+                }
             }
         ) {
             BottomNavGraph(navHostController = navController)
