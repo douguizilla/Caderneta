@@ -57,21 +57,37 @@ fun MainScreen() {
                     val navBackStackEntry by navcontroller.currentBackStackEntryAsState()
                     val currentDestination = navBackStackEntry?.destination
 
-                    AddItem(screen = BottomBarScreen.Home, currentDestination = currentDestination, navcontroler = navcontroller)
+                    AddItem(
+                        screen = BottomBarScreen.Home,
+                        currentDestination = currentDestination,
+                        navcontroler = navcontroller
+                    )
 
-                    AddItem(screen = BottomBarScreen.Income, currentDestination = currentDestination, navcontroler = navcontroller)
+                    AddItem(
+                        screen = BottomBarScreen.Income,
+                        currentDestination = currentDestination,
+                        navcontroler = navcontroller
+                    )
 
                     IconButton(onClick = {
-                        coroutineScope.launch{
+                        coroutineScope.launch {
                             bottomState.show()
                         }
                     }) {
                         Icon(Icons.Rounded.Add, contentDescription = "")
                     }
 
-                    AddItem(screen = BottomBarScreen.Outlay, currentDestination = currentDestination, navcontroler = navcontroller)
+                    AddItem(
+                        screen = BottomBarScreen.Outlay,
+                        currentDestination = currentDestination,
+                        navcontroler = navcontroller
+                    )
 
-                    AddItem(screen = BottomBarScreen.Goals, currentDestination = currentDestination, navcontroler = navcontroller)
+                    AddItem(
+                        screen = BottomBarScreen.Goals,
+                        currentDestination = currentDestination,
+                        navcontroler = navcontroller
+                    )
                 }
             }
         ) {
@@ -84,35 +100,6 @@ fun MainScreen() {
     preciso colocar a bottom sheet pra aparecer na frente da bottom nav
      */
 
-}
-
-@Composable
-fun BottomBar(navcontroler: NavHostController) {
-    val screens = listOf(
-        BottomBarScreen.Home,
-        BottomBarScreen.Income,
-        BottomBarScreen.Outlay,
-        BottomBarScreen.Goals
-    )
-
-
-    val navBackStackEntry by navcontroler.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination
-
-    val shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
-    BottomNavigation(
-        modifier = Modifier.clip(shape),
-        backgroundColor = Color.LightGray,
-        elevation = 10.dp
-    ) {
-        screens.forEach { screen ->
-            AddItem(
-                screen = screen,
-                currentDestination = currentDestination,
-                navcontroler = navcontroler
-            )
-        }
-    }
 }
 
 @Composable
@@ -150,7 +137,7 @@ fun RowScope.AddItem(
         },
         selected = isSelected,
         onClick = {
-                navcontroler.navigate(screen.route)
+            navcontroler.navigate(screen.route)
         })
 
 }
