@@ -48,7 +48,8 @@ fun MainScreen() {
 
         Scaffold(
             topBar = {
-                TopAppBar(backgroundColor = MaterialTheme.colors.background) {
+                TopAppBar(backgroundColor = Color.White,
+                    elevation = 0.dp) {
                     Text(text = "Caderneta")
                 }
             },
