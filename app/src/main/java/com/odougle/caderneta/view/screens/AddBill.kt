@@ -22,7 +22,7 @@ fun AddItems() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .height(200.dp)
+            .height(150.dp)
             .clip(shape)
             .padding(16.dp)
     ) {
