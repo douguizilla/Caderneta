@@ -47,6 +47,11 @@ fun MainScreen() {
         BottomNavGraph(navHostController = navcontroller)
 
         Scaffold(
+            topBar = {
+                TopAppBar(backgroundColor = MaterialTheme.colors.background) {
+                    Text(text = "Caderneta")
+                }
+            },
             bottomBar = {
 
                 BottomNavigation(
