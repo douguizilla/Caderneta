@@ -1,17 +1,12 @@
 package com.odougle.caderneta.view
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.AppBarDefaults.ContentPadding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -19,7 +14,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,16 +26,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.odougle.caderneta.view.navigation.BottomBarScreen
 import com.odougle.caderneta.view.navigation.BottomNavGraph
-import com.odougle.caderneta.view.screens.AddBillScreen
 import com.odougle.caderneta.view.screens.AddItems
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
 @Composable
 fun MainScreen() {
     val shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
-    val navController = rememberNavController()
+    val navcontroller = rememberNavController()
     val bottomState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
     val coroutineScope = rememberCoroutineScope()
 
@@ -52,18 +44,22 @@ fun MainScreen() {
             AddItems()
         }
     ) {
+        BottomNavGraph(navHostController = navcontroller)
+
         Scaffold(
             bottomBar = {
+
                 BottomNavigation(
-                    modifier = Modifier.clip(shape)
+                    modifier = Modifier.clip(shape),
+                    backgroundColor = Color.LightGray
                 ) {
-                    IconButton(onClick = {
-                        coroutineScope.launch{
-                            bottomState.show()
-                        }
-                    }) {
-                        Icon(Icons.Rounded.Add, contentDescription = "")
-                    }
+
+                    val navBackStackEntry by navcontroller.currentBackStackEntryAsState()
+                    val currentDestination = navBackStackEntry?.destination
+
+                    AddItem(screen = BottomBarScreen.Home, currentDestination = currentDestination, navcontroler = navcontroller)
+
+                    AddItem(screen = BottomBarScreen.Income, currentDestination = currentDestination, navcontroler = navcontroller)
 
                     IconButton(onClick = {
                         coroutineScope.launch{
@@ -73,33 +69,13 @@ fun MainScreen() {
                         Icon(Icons.Rounded.Add, contentDescription = "")
                     }
 
-                    IconButton(onClick = {
-                        coroutineScope.launch{
-                            bottomState.show()
-                        }
-                    }) {
-                        Icon(Icons.Rounded.Add, contentDescription = "")
-                    }
+                    AddItem(screen = BottomBarScreen.Outlay, currentDestination = currentDestination, navcontroler = navcontroller)
 
-                    IconButton(onClick = {
-                        coroutineScope.launch{
-                            bottomState.show()
-                        }
-                    }) {
-                        Icon(Icons.Rounded.Add, contentDescription = "")
-                    }
-
-                    IconButton(onClick = {
-                        coroutineScope.launch{
-                            bottomState.show()
-                        }
-                    }) {
-                        Icon(Icons.Rounded.Add, contentDescription = "")
-                    }
+                    AddItem(screen = BottomBarScreen.Goals, currentDestination = currentDestination, navcontroler = navcontroller)
                 }
             }
         ) {
-            BottomNavGraph(navHostController = navController)
+            BottomNavGraph(navHostController = navcontroller)
         }
     }
 
@@ -115,7 +91,6 @@ fun BottomBar(navcontroler: NavHostController) {
     val screens = listOf(
         BottomBarScreen.Home,
         BottomBarScreen.Income,
-        BottomBarScreen.AddBill,
         BottomBarScreen.Outlay,
         BottomBarScreen.Goals
     )
@@ -175,7 +150,6 @@ fun RowScope.AddItem(
         },
         selected = isSelected,
         onClick = {
-            if(screen.route != "addBill")
                 navcontroler.navigate(screen.route)
         })
 

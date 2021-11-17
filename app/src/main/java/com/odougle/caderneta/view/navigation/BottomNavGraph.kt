@@ -23,10 +23,6 @@ fun BottomNavGraph(navHostController: NavHostController) {
             IncomeScreen()
         }
 
-        composable(route = BottomBarScreen.AddBill.route){
-            AddBillScreen()
-        }
-
         composable(route = BottomBarScreen.Outlay.route){
             OutlayScreen()
         }

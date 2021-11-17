@@ -27,13 +27,6 @@ sealed class BottomBarScreen(
         contentDescription = "Tela das suas receitas"
     )
 
-    object AddBill: BottomBarScreen(
-        route = "addBill",
-        title = "Add",
-        icon = R.drawable.ic_add,
-        contentDescription = "Botão para adicionar novas despesas, receitas ou metas"
-    )
-
     object Outlay: BottomBarScreen(
         route = "outlay",
         title = "Despesas",

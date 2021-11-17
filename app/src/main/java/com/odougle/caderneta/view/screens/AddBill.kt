@@ -16,25 +16,6 @@ import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
 @Composable
-fun AddBillScreen() {
-    val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
-        bottomSheetState = BottomSheetState(BottomSheetValue.Collapsed)
-    )
-
-    val coroutineScope = rememberCoroutineScope()
-
-    BottomSheetScaffold(scaffoldState = bottomSheetScaffoldState,
-        sheetContent = {
-            AddItems()
-        }
-    ) {
-        coroutineScope.launch {
-            bottomSheetScaffoldState.bottomSheetState.expand()
-        }
-    }
-}
-
-@Composable
 fun AddItems() {
     val shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
 
