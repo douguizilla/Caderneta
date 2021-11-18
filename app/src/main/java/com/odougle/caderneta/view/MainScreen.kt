@@ -24,6 +24,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.odougle.caderneta.ui.theme.Purple200
 import com.odougle.caderneta.view.navigation.BottomBarScreen
 import com.odougle.caderneta.view.navigation.BottomNavGraph
 import com.odougle.caderneta.view.screens.AddItems
@@ -48,9 +49,10 @@ fun MainScreen() {
 
         Scaffold(
             topBar = {
-                TopAppBar(backgroundColor = Color.White,
+                TopAppBar(
+                    backgroundColor = Color.LightGray,
                     elevation = 0.dp) {
-                    Text(text = "Caderneta")
+                    Text(text = "Caderneta", style = MaterialTheme.typography.h1)
                 }
             },
             bottomBar = {
@@ -80,7 +82,7 @@ fun MainScreen() {
                             bottomState.show()
                         }
                     }) {
-                        Icon(Icons.Rounded.Add, contentDescription = "")
+                        Icon(Icons.Rounded.Add, contentDescription = "Add")
                     }
 
                     AddItem(
