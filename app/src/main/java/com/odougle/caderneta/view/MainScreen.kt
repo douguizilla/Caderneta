@@ -30,7 +30,10 @@ import com.odougle.caderneta.util.fromStringRes
 import com.odougle.caderneta.view.navigation.BottomBarScreen
 import com.odougle.caderneta.view.navigation.BottomNavGraph
 import com.odougle.caderneta.view.screens.AddItems
+import com.odougle.caderneta.view.screens.MenuAction
 import kotlinx.coroutines.launch
+import com.odougle.caderneta.view.components.TopAppBar
+
 
 @ExperimentalMaterialApi
 @Composable
@@ -51,14 +54,19 @@ fun MainScreen() {
 
         Scaffold(
             topBar = {
-                TopAppBar(
-                    backgroundColor = Color.LightGray,
-                    elevation = 0.dp
+                TopAppBar<MenuAction>(
+                    title = {
+                        Text(
+                            text = stringResource(R.string.app_name),
+                            style = MaterialTheme.typography.h1
+                        )
+                    },
+                    actionData = listOf(MenuAction.Share),
+                    action = { menuAction ->
+
+                    }
                 ) {
-                    Text(
-                        text = stringResource(R.string.app_name),
-                        style = MaterialTheme.typography.h1
-                    )
+                    
                 }
             },
             bottomBar = {
