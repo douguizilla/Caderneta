@@ -65,9 +65,7 @@ fun MainScreen() {
                     action = { menuAction ->
 
                     }
-                ) {
-                    
-                }
+                )
             },
             bottomBar = {
 
