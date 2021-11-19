@@ -15,4 +15,7 @@
     <string name="outlay_bottom_navigation_title">Despesas</string>
     <string name="goals_bottom_navigation_title">Metas</string>
 
+    <!-- Menu Action Labels -->
+    <string name="share">Compartilhar</string>
+
 </resources>
