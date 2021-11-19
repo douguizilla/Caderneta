@@ -1,43 +1,43 @@
 package com.odougle.caderneta.view.navigation
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
+import androidx.annotation.StringRes
 import com.odougle.caderneta.R
+import com.odougle.caderneta.util.ROUTE_GOALS
+import com.odougle.caderneta.util.ROUTE_HOME
+import com.odougle.caderneta.util.ROUTE_INCOME
+import com.odougle.caderneta.util.ROUTE_OUTLAY
 
 sealed class BottomBarScreen(
     val route: String,
-    val title: String,
+    @StringRes val title: Int,
     val icon: Int,
-    val contentDescription: String
+    @StringRes val contentDescription: Int
 ){
     object Home: BottomBarScreen(
-        route = "home",
-        title = "Início",
+        route = ROUTE_HOME,
+        title = R.string.home_bottom_navigation_title,
         icon = R.drawable.ic_home,
-        contentDescription = "Tela inicial"
+        contentDescription = R.string.home_button_content_description
     )
 
     object Income: BottomBarScreen(
-        route = "income",
-        title = "Receitas",
+        route = ROUTE_INCOME,
+        title = R.string.income_bottom_navigation_title,
         icon = R.drawable.ic_income,
-        contentDescription = "Tela das suas receitas"
+        contentDescription = R.string.income_button_content_description
     )
 
     object Outlay: BottomBarScreen(
-        route = "outlay",
-        title = "Despesas",
+        route = ROUTE_OUTLAY,
+        title = R.string.outlay_bottom_navigation_title,
         icon = R.drawable.ic_outlay,
-        contentDescription = "Tela das suas despesas"
+        contentDescription = R.string.outlay_button_content_description
     )
 
     object Goals: BottomBarScreen(
-        route = "goals",
-        title = "Metas",
+        route = ROUTE_GOALS,
+        title = R.string.goals_bottom_navigation_title,
         icon = R.drawable.ic_goals,
-        contentDescription = "Tela das suas metas"
+        contentDescription = R.string.goals_button_content_description
     )
 }

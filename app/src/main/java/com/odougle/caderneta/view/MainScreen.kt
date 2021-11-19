@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -24,7 +25,8 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.odougle.caderneta.ui.theme.Purple200
+import com.odougle.caderneta.R
+import com.odougle.caderneta.util.fromStringRes
 import com.odougle.caderneta.view.navigation.BottomBarScreen
 import com.odougle.caderneta.view.navigation.BottomNavGraph
 import com.odougle.caderneta.view.screens.AddItems
@@ -34,7 +36,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun MainScreen() {
     val shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
-    val navcontroller = rememberNavController()
+    val navController = rememberNavController()
     val bottomState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
     val coroutineScope = rememberCoroutineScope()
 
@@ -45,14 +47,18 @@ fun MainScreen() {
             AddItems()
         }
     ) {
-        BottomNavGraph(navHostController = navcontroller)
+        BottomNavGraph(navHostController = navController)
 
         Scaffold(
             topBar = {
                 TopAppBar(
                     backgroundColor = Color.LightGray,
-                    elevation = 0.dp) {
-                    Text(text = "Caderneta", style = MaterialTheme.typography.h1)
+                    elevation = 0.dp
+                ) {
+                    Text(
+                        text = stringResource(R.string.app_name),
+                        style = MaterialTheme.typography.h1
+                    )
                 }
             },
             bottomBar = {
@@ -62,19 +68,19 @@ fun MainScreen() {
                     backgroundColor = Color.LightGray
                 ) {
 
-                    val navBackStackEntry by navcontroller.currentBackStackEntryAsState()
+                    val navBackStackEntry by navController.currentBackStackEntryAsState()
                     val currentDestination = navBackStackEntry?.destination
 
                     AddItem(
                         screen = BottomBarScreen.Home,
                         currentDestination = currentDestination,
-                        navcontroler = navcontroller
+                        navcontroler = navController
                     )
 
                     AddItem(
                         screen = BottomBarScreen.Income,
                         currentDestination = currentDestination,
-                        navcontroler = navcontroller
+                        navcontroler = navController
                     )
 
                     IconButton(onClick = {
@@ -82,24 +88,27 @@ fun MainScreen() {
                             bottomState.show()
                         }
                     }) {
-                        Icon(Icons.Rounded.Add, contentDescription = "Add")
+                        Icon(
+                            Icons.Rounded.Add,
+                            contentDescription = stringResource(id = R.string.add_button_content_description)
+                        )
                     }
 
                     AddItem(
                         screen = BottomBarScreen.Outlay,
                         currentDestination = currentDestination,
-                        navcontroler = navcontroller
+                        navcontroler = navController
                     )
 
                     AddItem(
                         screen = BottomBarScreen.Goals,
                         currentDestination = currentDestination,
-                        navcontroler = navcontroller
+                        navcontroler = navController
                     )
                 }
             }
         ) {
-            BottomNavGraph(navHostController = navcontroller)
+            BottomNavGraph(navHostController = navController)
         }
     }
 
@@ -127,7 +136,7 @@ fun RowScope.AddItem(
     val iconColor = if (isSelected) Color.Black else Color.DarkGray
 
     BottomNavigationItem(
-        label = { Text(text = screen.title, fontSize = 10.sp, color = textColor) },
+        label = { Text(text = screen.title.fromStringRes(), fontSize = 10.sp, color = textColor) },
         icon = {
 
             Box(
@@ -138,7 +147,7 @@ fun RowScope.AddItem(
             ) {
                 Icon(
                     painter = painterResource(id = screen.icon),
-                    contentDescription = screen.contentDescription,
+                    contentDescription = screen.contentDescription.fromStringRes(),
                     tint = iconColor
                 )
             }

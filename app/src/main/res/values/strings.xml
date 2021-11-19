@@ -1,3 +1,18 @@
 <resources>
+    <!-- Top Bar -->
     <string name="app_name">Caderneta</string>
+
+    <!-- Content Descriptions -->
+    <string name="add_button_content_description">Adicionar novos itens</string>
+    <string name="home_button_content_description">Tela inicial</string>
+    <string name="income_button_content_description">Tela das suas receitas</string>
+    <string name="outlay_button_content_description">Tela das suas despesas</string>
+    <string name="goals_button_content_description">Tela das suas metas</string>
+
+    <!-- Bottom Navigation Titles -->
+    <string name="home_bottom_navigation_title">Início</string>
+    <string name="income_bottom_navigation_title">Receitas</string>
+    <string name="outlay_bottom_navigation_title">Despesas</string>
+    <string name="goals_bottom_navigation_title">Metas</string>
+
 </resources>
