@@ -17,5 +17,6 @@
 
     <!-- Menu Action Labels -->
     <string name="share">Compartilhar</string>
+    <string name="settings">Configurações</string>
 
 </resources>
