@@ -27,12 +27,11 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.odougle.caderneta.R
 import com.odougle.caderneta.util.fromStringRes
+import com.odougle.caderneta.view.components.CadernetaTopAppBar
 import com.odougle.caderneta.view.navigation.BottomBarScreen
 import com.odougle.caderneta.view.navigation.BottomNavGraph
 import com.odougle.caderneta.view.screens.AddItems
-import com.odougle.caderneta.view.screens.MenuAction
 import kotlinx.coroutines.launch
-import com.odougle.caderneta.view.components.TopAppBar
 
 
 @ExperimentalMaterialApi
@@ -53,20 +52,7 @@ fun MainScreen() {
         BottomNavGraph(navHostController = navController)
 
         Scaffold(
-            topBar = {
-                TopAppBar<MenuAction>(
-                    title = {
-                        Text(
-                            text = stringResource(R.string.app_name),
-                            style = MaterialTheme.typography.h1
-                        )
-                    },
-                    actionData = listOf(MenuAction.Share),
-                    action = { menuAction ->
-
-                    }
-                )
-            },
+            topBar = { CadernetaTopAppBar() },
             bottomBar = {
 
                 BottomNavigation(
