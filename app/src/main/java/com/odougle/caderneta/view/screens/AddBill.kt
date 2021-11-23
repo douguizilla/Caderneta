@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
 @Composable
-fun AddItems() {
+fun AddItems(addReceitaFunction: () -> Unit, addDespesaFunction: () -> Unit, addGoalFunction: () -> Unit) {
     val shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
 
     Column(
@@ -29,19 +29,22 @@ fun AddItems() {
         AddBottomSheetItem(
             drawableIconId = R.drawable.ic_income,
             contentDescription = "Adicionar receita",
-            spacerHeight = 16.dp
+            spacerHeight = 16.dp,
+            addAction = addReceitaFunction
         )
 
         AddBottomSheetItem(
             drawableIconId = R.drawable.ic_outlay,
             contentDescription = "Adicionar despesa",
-            spacerHeight = 16.dp
+            spacerHeight = 16.dp,
+            addAction = addDespesaFunction
         )
 
         AddBottomSheetItem(
             drawableIconId = R.drawable.ic_goals,
             contentDescription = "Adicionar meta",
-            spacerHeight = 16.dp
+            spacerHeight = 16.dp,
+            addAction = addGoalFunction
         )
 
     }
@@ -52,11 +55,11 @@ fun AddItems() {
 fun AddBottomSheetItem(
     drawableIconId: Int,
     contentDescription: String,
-    spacerHeight: Dp
+    spacerHeight: Dp,
+    addAction: () -> Unit
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth().clickable {
-        }
+        modifier = Modifier.fillMaxWidth().clickable { addAction }
     ){
         Icon(painter = painterResource(id = drawableIconId), contentDescription = contentDescription)
         Spacer(modifier = Modifier.width(8.dp))
