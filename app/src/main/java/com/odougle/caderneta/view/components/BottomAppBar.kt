@@ -1,17 +1,14 @@
 package com.odougle.caderneta.view.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -53,15 +50,25 @@ fun CadernetaBottomAppBar(navController: NavHostController, bottomState: ModalBo
             navcontroler = navController
         )
 
-        IconButton(onClick = {
-            coroutineScope.launch {
-                bottomState.show()
+        Box(
+            modifier = Modifier.width(80.dp).height(80.dp),
+            contentAlignment = Center
+        ) {
+            IconButton(
+                modifier = Modifier.fillMaxSize(),
+                onClick = {
+                    coroutineScope.launch {
+                        bottomState.show()
+                    }
+                }) {
+
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_add),
+                    contentDescription = stringResource(id = R.string.add_button_content_description),
+                    tint = Color.DarkGray
+                )
+
             }
-        }) {
-            Icon(
-                Icons.Rounded.Add,
-                contentDescription = stringResource(id = R.string.add_button_content_description)
-            )
         }
 
         AddItem(
