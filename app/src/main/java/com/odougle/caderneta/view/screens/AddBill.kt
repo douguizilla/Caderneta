@@ -3,20 +3,21 @@ package com.odougle.caderneta.view.screens
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.odougle.caderneta.R
-import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
 @Composable
-fun AddItems(addReceitaFunction: () -> Unit, addDespesaFunction: () -> Unit, addGoalFunction: () -> Unit) {
+fun AddItems() {
     val shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
 
     Column(
@@ -26,25 +27,26 @@ fun AddItems(addReceitaFunction: () -> Unit, addDespesaFunction: () -> Unit, add
             .clip(shape)
             .padding(16.dp)
     ) {
+        val context = LocalContext.current
         AddBottomSheetItem(
             drawableIconId = R.drawable.ic_income,
             contentDescription = "Adicionar receita",
             spacerHeight = 16.dp,
-            addAction = addReceitaFunction
+            addAction = { addIncome() }
         )
 
         AddBottomSheetItem(
             drawableIconId = R.drawable.ic_outlay,
             contentDescription = "Adicionar despesa",
             spacerHeight = 16.dp,
-            addAction = addDespesaFunction
+            addAction = { addOverlay() }
         )
 
         AddBottomSheetItem(
             drawableIconId = R.drawable.ic_goals,
             contentDescription = "Adicionar meta",
             spacerHeight = 16.dp,
-            addAction = addGoalFunction
+            addAction = { addGoal() }
         )
 
     }
@@ -56,10 +58,12 @@ fun AddBottomSheetItem(
     drawableIconId: Int,
     contentDescription: String,
     spacerHeight: Dp,
-    addAction: () -> Unit
+    addAction: @Composable () -> Unit
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth().clickable { addAction }
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { addAction }
     ){
         Icon(painter = painterResource(id = drawableIconId), contentDescription = contentDescription)
         Spacer(modifier = Modifier.width(8.dp))
@@ -67,3 +71,17 @@ fun AddBottomSheetItem(
     }
     Spacer(modifier = Modifier.height(spacerHeight))
 }
+
+@Composable
+fun addIncome() {
+
+}
+
+fun addOverlay() {
+
+}
+
+fun addGoal() {
+
+}
+
