@@ -15,7 +15,6 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun NewIncome() {
     Column(modifier = Modifier
-        .fillMaxSize()
         .background(MaterialTheme.colors.background)
         .padding(16.dp)
     ) {
@@ -58,6 +57,7 @@ fun NewIncome() {
                 Text(text = "CANCELAR")
             }
 
+            Spacer(modifier = Modifier.width(8.dp))
             Button(
                 modifier = Modifier.weight(1f),
                 onClick = { }
