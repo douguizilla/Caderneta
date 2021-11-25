@@ -65,7 +65,6 @@ fun NewIncome() {
                 Text(text = "ADICIONAR")
             }
 
-
         }
 
 
