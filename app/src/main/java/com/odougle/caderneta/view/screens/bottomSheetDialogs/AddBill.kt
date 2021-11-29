@@ -2,57 +2,40 @@ package com.odougle.caderneta.view.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.odougle.caderneta.R
-import com.odougle.caderneta.util.SHAPE
 import com.odougle.caderneta.view.screens.bottomSheetDialogs.NewIncome
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
 @Composable
 fun AddItems() {
-    val shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(150.dp)
-            .clip(shape)
-            .padding(16.dp)
+    val bottomSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
+    val scope = rememberCoroutineScope()
+    val content: @Composable (() -> Unit) = { Text("NULL") }
+    var customSheetContent by remember { mutableStateOf(content) }
+    ModalBottomSheetLayout(
+        sheetState = bottomSheetState,
+        sheetContent = {
+            customSheetContent()
+        }
     ) {
-        val context = LocalContext.current
-        AddBottomSheetItem(
-            drawableIconId = R.drawable.ic_income,
-            contentDescription = "Adicionar receita",
-            spacerHeight = 16.dp,
-            addAction = { addIncome() }
-        )
+        Column {
+            Button(
+                onClick = {
+                    customSheetContent = { NewIncome() }
+                    scope.launch { bottomSheetState.show() }
+                }) {
+                Text("First Button")
+            }
 
-        AddBottomSheetItem(
-            drawableIconId = R.drawable.ic_outlay,
-            contentDescription = "Adicionar despesa",
-            spacerHeight = 16.dp,
-            addAction = { addOverlay() }
-        )
-
-        AddBottomSheetItem(
-            drawableIconId = R.drawable.ic_goals,
-            contentDescription = "Adicionar meta",
-            spacerHeight = 16.dp,
-            addAction = { addGoal() }
-        )
+        }
 
     }
-
 }
 
 @Composable
@@ -76,24 +59,3 @@ fun AddBottomSheetItem(
     }
     Spacer(modifier = Modifier.height(spacerHeight))
 }
-
-@ExperimentalMaterialApi
-@Composable
-fun addIncome() {
-    val bottomState = rememberBottomSheetScaffoldState(bottomSheetState = BottomSheetScaffoldState)
-    val coroutineScope = rememberCoroutineScope()
-
-    BottomSheetScaffold(sheetContent = { NewIncome() }) {
-
-    }
-
-}
-
-fun addOverlay() {
-
-}
-
-fun addGoal() {
-
-}
-
