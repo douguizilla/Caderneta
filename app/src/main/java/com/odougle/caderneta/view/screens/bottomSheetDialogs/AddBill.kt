@@ -66,7 +66,7 @@ fun AddBottomSheetItem(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(enabled = true) {
-               addAction
+                addAction
             }
 
     ){
@@ -80,19 +80,13 @@ fun AddBottomSheetItem(
 @ExperimentalMaterialApi
 @Composable
 fun addIncome() {
-    val bottomState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
+    val bottomState = rememberBottomSheetScaffoldState(bottomSheetState = BottomSheetScaffoldState)
     val coroutineScope = rememberCoroutineScope()
-    ModalBottomSheetLayout(
-        sheetState = bottomState,
-        sheetShape = SHAPE,
-        sheetContent = {
-            NewIncome()
-        }
-    ){
-        coroutineScope.launch {
-            bottomState.show()
-        }
+
+    BottomSheetScaffold(sheetContent = { NewIncome() }) {
+
     }
+
 }
 
 fun addOverlay() {
