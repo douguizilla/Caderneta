@@ -31,6 +31,8 @@ fun MainScreen() {
         ) {
             BottomNavGraph(navHostController = navController)
         }
+
+
     }
 }
 
