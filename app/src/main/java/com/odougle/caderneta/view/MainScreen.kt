@@ -104,6 +104,68 @@ fun MainScreen() {
             }
         }
 
+        if (bottomState.isVisible) {
+
+        }else{
+           selection = 0
+           sheetContent = {
+                Column {
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable(enabled = true) {
+                                selection = 1
+                            }
+
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_income),
+                            contentDescription = stringResource(id = R.string.income_button_content_description)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(text = stringResource(id = R.string.income_button_content_description))
+                    }
+                    Spacer(modifier = Modifier.height(SPACER_HEIGHT))
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable(enabled = true) {
+                                selection = 2
+                            }
+
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_income),
+                            contentDescription = stringResource(id = R.string.income_button_content_description)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(text = stringResource(id = R.string.income_button_content_description))
+                    }
+                    Spacer(modifier = Modifier.height(SPACER_HEIGHT))
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable(enabled = true) {
+                                selection = 3
+                            }
+
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_income),
+                            contentDescription = stringResource(id = R.string.income_button_content_description)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(text = stringResource(id = R.string.income_button_content_description))
+                    }
+                    Spacer(modifier = Modifier.height(SPACER_HEIGHT))
+
+                }
+            }
+        }
+
         Scaffold(
             topBar = { CadernetaTopAppBar() },
             bottomBar = {
