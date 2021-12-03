@@ -27,10 +27,10 @@ import com.odougle.caderneta.view.screens.bottomSheetDialogs.NewIncome
 fun MainScreen() {
     val navController = rememberNavController()
     val bottomState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
-    val selectionAux = remember{ mutableStateOf(0)}
-    var selection by remember {
-        mutableStateOf(0)
-    }
+
+    val selectionAux = remember { mutableStateOf(0) }
+    var selection by remember { mutableStateOf(0) }
+
     val content: @Composable (() -> Unit) = {
         Options(selection = selectionAux)
     }
@@ -54,12 +54,12 @@ fun MainScreen() {
 
         if (bottomState.isVisible) {
 
-        }else{
-           selection = 0
+        } else {
+            selection = 0
             selectionAux.value = 0
-           sheetContent = {
-               Options(selection = selectionAux)
-           }
+            sheetContent = {
+                Options(selection = selectionAux)
+            }
         }
 
         selection = selectionAux.value
@@ -83,57 +83,29 @@ fun MainScreen() {
 @Composable
 fun Options(selection: MutableState<Int>) {
     Column(modifier = Modifier.padding(DEFAULT_PADDING)) {
+        AddBottomSheetItem(
+            drawableIconId = R.drawable.ic_income,
+            label = stringResource(id = R.string.add_new_income_text),
+            contentDescription = stringResource(R.string.income_button_content_description),
+            option = 1,
+            selection = selection
+        )
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable(enabled = true) {
-                    selection.value = 1
-                }
+        AddBottomSheetItem(
+            drawableIconId = R.drawable.ic_outlay,
+            label = stringResource(id = R.string.add_new_outlay_text),
+            contentDescription = stringResource(R.string.outlay_button_content_description),
+            option = 2,
+            selection = selection
+        )
 
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_income),
-                contentDescription = stringResource(id = R.string.income_button_content_description)
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(text = stringResource(id = R.string.add_new_income_text))
-        }
-        Spacer(modifier = Modifier.height(SPACER_HEIGHT))
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable(enabled = true) {
-                    selection.value = 2
-                }
-
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_outlay),
-                contentDescription = stringResource(id = R.string.outlay_button_content_description)
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(text = stringResource(id = R.string.add_new_outlay_text))
-        }
-        Spacer(modifier = Modifier.height(SPACER_HEIGHT))
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable(enabled = true) {
-                    selection.value = 3
-                }
-
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_goals),
-                contentDescription = stringResource(id = R.string.income_button_content_description)
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(text = stringResource(id = R.string.add_new_goals_text))
-        }
-        Spacer(modifier = Modifier.height(SPACER_HEIGHT))
+        AddBottomSheetItem(
+            drawableIconId = R.drawable.ic_goals,
+            label = stringResource(id = R.string.add_new_goals_text),
+            contentDescription = stringResource(id = R.string.income_button_content_description),
+            option = 3,
+            selection = selection
+        )
 
     }
 }
@@ -141,14 +113,17 @@ fun Options(selection: MutableState<Int>) {
 @Composable
 fun AddBottomSheetItem(
     drawableIconId: Int,
+    label: String,
     contentDescription: String,
-    spacerHeight: Dp,
+    spacerHeight: Dp = SPACER_HEIGHT,
+    option: Int,
+    selection: MutableState<Int>
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(enabled = true) {
-
+                selection.value = option
             }
 
     ) {
@@ -157,7 +132,7 @@ fun AddBottomSheetItem(
             contentDescription = contentDescription
         )
         Spacer(modifier = Modifier.width(8.dp))
-        Text(text = contentDescription)
+        Text(text = label)
     }
     Spacer(modifier = Modifier.height(spacerHeight))
 }
