@@ -14,6 +14,8 @@ fun Int.fromStringRes() : String{
 fun String.parseToDP() =
     if(this.length < 5){
         (this.length * 13).dp
-    }else{
+    }else if(this.length < 10){
         (this.length * 10).dp
+    }else{
+        (this.length * 8).dp
     }
