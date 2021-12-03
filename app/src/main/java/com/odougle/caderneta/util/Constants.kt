@@ -11,3 +11,6 @@ val ROUTE_GOALS = "goals"
 
 //Shapes
 val SHAPE = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
+
+//Heights
+val SPACER_HEIGHT = 16.dp
