@@ -1,0 +1,69 @@
+package com.odougle.caderneta.view.screens.lazycolumns.items
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.odougle.caderneta.util.ALL_SIDES_ROUNDED_CORNER_SHAPE
+import com.odougle.caderneta.util.parseToDP
+
+@Preview
+@Composable
+fun ItemBase() {
+    Card(
+        modifier = Modifier
+            .background(color = MaterialTheme.colors.background)
+            .fillMaxWidth()
+            .height(80.dp)
+            .border(width = 2.dp, color = Color.Gray, shape = ALL_SIDES_ROUNDED_CORNER_SHAPE)
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxSize()
+        )
+        {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                var test = "TAG"
+
+                Card(
+                    modifier = Modifier
+                        .height(20.dp)
+                        .width(test.parseToDP())
+                        .border(
+                            width = 1.dp,
+                            color = Color.Gray,
+                            shape = ALL_SIDES_ROUNDED_CORNER_SHAPE
+                        )
+                ) {
+                    Text(text = test, textAlign = TextAlign.Center)
+                }
+                Text(text = "10/10/2021")
+            }
+
+            Spacer(modifier = Modifier.height(6.dp))
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(text = "DESCRIÇÃO", fontSize = 16.sp)
+                Text(text = "R$ 99,00", fontSize = 16.sp)
+            }
+
+        }
+    }
+}
