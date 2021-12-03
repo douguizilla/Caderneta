@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.odougle.caderneta.R
 import com.odougle.caderneta.util.DEFAULT_PADDING
-import com.odougle.caderneta.util.SHAPE
+import com.odougle.caderneta.util.TOP_START_AND_TOP_END_ROUNDED_CORNER_SHAPE
 import com.odougle.caderneta.util.SPACER_HEIGHT
 import com.odougle.caderneta.view.components.CadernetaBottomAppBar
 import com.odougle.caderneta.view.components.CadernetaTopAppBar
@@ -36,7 +36,7 @@ fun MainScreen() {
 
     ModalBottomSheetLayout(
         sheetState = bottomState,
-        sheetShape = SHAPE,
+        sheetShape = TOP_START_AND_TOP_END_ROUNDED_CORNER_SHAPE,
         sheetContent = {
             sheetContent()
         }

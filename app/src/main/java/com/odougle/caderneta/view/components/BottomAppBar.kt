@@ -22,7 +22,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.odougle.caderneta.R
 import com.odougle.caderneta.ui.theme.AlmostWhite
-import com.odougle.caderneta.util.SHAPE
+import com.odougle.caderneta.util.TOP_START_AND_TOP_END_ROUNDED_CORNER_SHAPE
 import com.odougle.caderneta.util.fromStringRes
 import com.odougle.caderneta.view.navigation.BottomBarScreen
 import kotlinx.coroutines.launch
@@ -31,7 +31,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun CadernetaBottomAppBar(navController: NavHostController, bottomState: ModalBottomSheetState) {
     BottomNavigation(
-        modifier = Modifier.clip(SHAPE),
+        modifier = Modifier.clip(TOP_START_AND_TOP_END_ROUNDED_CORNER_SHAPE),
         backgroundColor = AlmostWhite
     ) {
         val coroutineScope = rememberCoroutineScope()
