@@ -18,5 +18,8 @@
     <!-- Menu Action Labels -->
     <string name="share">Compartilhar</string>
     <string name="settings">Configurações</string>
+    <string name="add_new_income_text">Adicionar nova receita</string>
+    <string name="add_new_outlay_text">Adicionar nova despesa</string>
+    <string name="add_new_goals_text">Adicionar nova meta</string>
 
 </resources>
