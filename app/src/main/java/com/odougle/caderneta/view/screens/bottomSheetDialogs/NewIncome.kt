@@ -29,26 +29,40 @@ fun NewIncome(
             modifier = Modifier.fillMaxWidth(),
             value = descriptionText,
             onValueChange = { descriptionText = it },
+            label = { Text(text = "Tag") }
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = descriptionText,
+            onValueChange = { descriptionText = it },
             label = { Text(text = "Descrição") }
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        OutlinedTextField(
+        Row(
             modifier = Modifier.fillMaxWidth(),
-            value = valueText,
-            onValueChange = { valueText = it },
-            label = { Text(text = "Valor") }
-        )
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            OutlinedTextField(
+                modifier = Modifier.weight(1f),
+                value = valueText,
+                onValueChange = { valueText = it },
+                label = { Text(text = "Valor") }
+            )
 
-        Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.width(16.dp))
 
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = dateText,
-            onValueChange = { dateText = it },
-            label = { Text(text = "Data") }
-        )
+            OutlinedTextField(
+                modifier = Modifier.weight(1f),
+                value = dateText,
+                onValueChange = { dateText = it },
+                label = { Text(text = "Data") }
+            )
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
