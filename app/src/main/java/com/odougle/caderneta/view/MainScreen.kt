@@ -35,8 +35,6 @@ fun MainScreen() {
         Options(selection = selectionAux)
     }
 
-    selection = selectionAux.value
-
     var sheetContent by remember { mutableStateOf(content) }
 
     ModalBottomSheetLayout(
@@ -58,10 +56,13 @@ fun MainScreen() {
 
         }else{
            selection = 0
+            selectionAux.value = 0
            sheetContent = {
                Options(selection = selectionAux)
            }
         }
+
+        selection = selectionAux.value
 
         Scaffold(
             topBar = { CadernetaTopAppBar() },
