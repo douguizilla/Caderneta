@@ -10,7 +10,7 @@ fun Int.fromStringRes() : String{
     return stringResource(id = this)
 }
 
-@Composable
+
 fun String.parseToDP() =
     if(this.length < 5){
         (this.length * 13).dp
