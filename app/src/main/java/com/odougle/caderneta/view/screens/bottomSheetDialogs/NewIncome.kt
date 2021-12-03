@@ -2,28 +2,31 @@ package com.odougle.caderneta.view.screens.bottomSheetDialogs
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 
-@Preview
+@ExperimentalMaterialApi
 @Composable
-fun NewIncome() {
+fun NewIncome(
+    bottomSheetState: ModalBottomSheetState
+) {
+    val coroutine = rememberCoroutineScope()
     Column(modifier = Modifier
         .background(MaterialTheme.colors.background)
         .padding(16.dp)
     ) {
-        var text by remember { mutableStateOf("")}
+        var descriptionText by remember { mutableStateOf("")}
+        var valueText by remember { mutableStateOf("")}
+        var dateText by remember { mutableStateOf("")}
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = text,
-            onValueChange = {text = it},
+            value = descriptionText,
+            onValueChange = {descriptionText = it},
             label = { Text(text = "Descrição")}
         )
 
@@ -31,8 +34,8 @@ fun NewIncome() {
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = text,
-            onValueChange = {text = it},
+            value = valueText,
+            onValueChange = {valueText = it},
             label = { Text(text = "Valor")}
         )
 
@@ -40,8 +43,8 @@ fun NewIncome() {
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = text,
-            onValueChange = {text = it},
+            value = dateText,
+            onValueChange = {dateText = it},
             label = { Text(text = "Data")}
         )
 
@@ -52,12 +55,16 @@ fun NewIncome() {
         ) {
             Button(
                modifier = Modifier.weight(1f),
-                onClick = { }
+                onClick = {
+                    coroutine.launch {
+                        bottomSheetState.hide()
+                    }
+                }
             ) {
                 Text(text = "CANCELAR")
             }
 
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(16.dp))
             Button(
                 modifier = Modifier.weight(1f),
                 onClick = { }

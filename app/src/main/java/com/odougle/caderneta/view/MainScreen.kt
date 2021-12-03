@@ -4,11 +4,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.internal.ComposableLambda
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
@@ -19,7 +17,6 @@ import com.odougle.caderneta.util.SPACER_HEIGHT
 import com.odougle.caderneta.view.components.CadernetaBottomAppBar
 import com.odougle.caderneta.view.components.CadernetaTopAppBar
 import com.odougle.caderneta.view.navigation.BottomNavGraph
-import com.odougle.caderneta.view.screens.AddItems
 import com.odougle.caderneta.view.screens.bottomSheetDialogs.NewIncome
 
 @ExperimentalMaterialApi
@@ -48,7 +45,7 @@ fun MainScreen() {
 
         when (selection) {
             1 -> {
-                sheetContent = { NewIncome() }
+                sheetContent = { NewIncome(bottomSheetState = bottomState) }
             }
         }
 
