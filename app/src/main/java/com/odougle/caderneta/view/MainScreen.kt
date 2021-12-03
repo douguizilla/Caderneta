@@ -29,8 +29,66 @@ fun MainScreen() {
     var selection by remember {
         mutableStateOf(0)
     }
-    val content: @Composable (() -> Unit) = { Options() }
+    val content: @Composable (() -> Unit) = {
+        Column {
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable(enabled = true) {
+                        selection = 1
+                    }
+
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_income),
+                    contentDescription = stringResource(id = R.string.income_button_content_description)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = stringResource(id = R.string.income_button_content_description))
+            }
+            Spacer(modifier = Modifier.height(SPACER_HEIGHT))
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable(enabled = true) {
+                        selection = 2
+                    }
+
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_income),
+                    contentDescription = stringResource(id = R.string.income_button_content_description)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = stringResource(id = R.string.income_button_content_description))
+            }
+            Spacer(modifier = Modifier.height(SPACER_HEIGHT))
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable(enabled = true) {
+                        selection = 3
+                    }
+
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_income),
+                    contentDescription = stringResource(id = R.string.income_button_content_description)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = stringResource(id = R.string.income_button_content_description))
+            }
+            Spacer(modifier = Modifier.height(SPACER_HEIGHT))
+
+        }
+
+    }
+
     var sheetContent by remember { mutableStateOf(content) }
+
     ModalBottomSheetLayout(
         sheetState = bottomState,
         sheetShape = SHAPE,
@@ -41,66 +99,6 @@ fun MainScreen() {
         BottomNavGraph(navHostController = navController)
 
         when (selection) {
-            0 -> {
-                sheetContent = {
-                    Column {
-
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable(enabled = true) {
-                                    selection = 1
-                                }
-
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_income),
-                                contentDescription = stringResource(id = R.string.income_button_content_description)
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(text = stringResource(id = R.string.income_button_content_description))
-                        }
-                        Spacer(modifier = Modifier.height(SPACER_HEIGHT))
-
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable(enabled = true) {
-                                    selection = 2
-                                }
-
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_income),
-                                contentDescription = stringResource(id = R.string.income_button_content_description)
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(text = stringResource(id = R.string.income_button_content_description))
-                        }
-                        Spacer(modifier = Modifier.height(SPACER_HEIGHT))
-
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable(enabled = true) {
-                                    selection = 3
-                                }
-
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_income),
-                                contentDescription = stringResource(id = R.string.income_button_content_description)
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(text = stringResource(id = R.string.income_button_content_description))
-                        }
-                        Spacer(modifier = Modifier.height(SPACER_HEIGHT))
-
-                    }
-
-                }
-            }
-
             1 -> {
                 sheetContent = { NewIncome() }
             }
