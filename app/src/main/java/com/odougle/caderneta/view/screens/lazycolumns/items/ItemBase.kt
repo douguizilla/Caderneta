@@ -49,13 +49,13 @@ fun ItemBase(
                         .width(tag.parseToDP())
                         .border(
                             width = 1.dp,
-                            color = Color.Gray,
+                            color = color,
                             shape = ALL_SIDES_ROUNDED_CORNER_SHAPE
                         )
                 ) {
-                    Text(text = tag.uppercase(), textAlign = TextAlign.Center)
+                    Text(text = tag.uppercase(), textAlign = TextAlign.Center, color = color)
                 }
-                Text(text = date)
+                Text(text = date, color = color)
             }
 
             Spacer(modifier = Modifier.height(6.dp))
@@ -66,13 +66,12 @@ fun ItemBase(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 var newValue = value
-                if(!isValuePositive){
+                if (!isValuePositive) {
                     newValue = "- " + value
                 }
-                Text(text = description.uppercase(), fontSize = 16.sp)
-                Text(text = newValue, fontSize = 16.sp)
+                Text(text = description.uppercase(), fontSize = 16.sp, color = color)
+                Text(text = newValue, fontSize = 16.sp, color = color)
             }
-
         }
     }
 }
