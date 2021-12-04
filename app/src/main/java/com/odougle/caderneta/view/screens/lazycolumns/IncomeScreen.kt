@@ -1,18 +1,48 @@
 package com.odougle.caderneta.view.screens
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.odougle.caderneta.model.Income
+import com.odougle.caderneta.view.screens.lazycolumns.items.IncomeItem
 
 @Composable
 fun IncomeScreen() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "RECEITAS")
+    val incomeList = listOf(
+        Income("receita", "salario", "10/10/2021", "2.000,00"),
+        Income("receita", "freela", "11/10/2021", "1.000,00"),
+        Income("receita", "bico", "10/11/2021", "2.200,00"),
+        Income("receita", "investimento", "09/10/2021", "5.000,00"),
+        Income("receita", "salario", "07/10/2008", "4.000,00"),
+        Income("receita", "salario", "10/10/2021", "2.000,00"),
+        Income("receita", "freela", "11/10/2021", "1.000,00"),
+        Income("receita", "bico", "10/11/2021", "2.200,00"),
+        Income("receita", "investimento", "09/10/2021", "5.000,00"),
+        Income("receita", "salario", "07/10/2008", "4.000,00"),
+        Income("receita", "salario", "10/10/2021", "2.000,00"),
+        Income("receita", "freela", "11/10/2021", "1.000,00"),
+        Income("receita", "bico", "10/11/2021", "2.200,00"),
+        Income("receita", "investimento", "09/10/2021", "5.000,00"),
+        Income("receita", "salario", "07/10/2008", "4.000,00"),
+    )
+    LazyColumn(modifier = Modifier
+        .fillMaxSize()
+        .padding(16.dp)) {
+        items(incomeList) { income ->
+            IncomeItem(
+                tag = income.tag,
+                description = income.description,
+                date = income.date,
+                value = income.value
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+        }
     }
 }

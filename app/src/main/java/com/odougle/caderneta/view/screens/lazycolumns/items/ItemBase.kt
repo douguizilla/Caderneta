@@ -31,6 +31,8 @@ fun ItemBase(
             .fillMaxWidth()
             .height(80.dp)
             .border(width = 2.dp, color = color, shape = ALL_SIDES_ROUNDED_CORNER_SHAPE)
+    ,
+        shape = ALL_SIDES_ROUNDED_CORNER_SHAPE
     ) {
         Column(
             modifier = Modifier
@@ -51,7 +53,8 @@ fun ItemBase(
                             width = 1.dp,
                             color = color,
                             shape = ALL_SIDES_ROUNDED_CORNER_SHAPE
-                        )
+                        ),
+                    shape = ALL_SIDES_ROUNDED_CORNER_SHAPE
                 ) {
                     Text(text = tag.uppercase(), textAlign = TextAlign.Center, color = color)
                 }

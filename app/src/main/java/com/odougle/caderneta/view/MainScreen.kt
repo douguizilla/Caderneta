@@ -35,6 +35,7 @@ fun MainScreen() {
     var sheetContent by remember { mutableStateOf(content) }
 
     ModalBottomSheetLayout(
+        modifier = Modifier.fillMaxSize(),
         sheetState = bottomState,
         sheetShape = TOP_START_AND_TOP_END_ROUNDED_CORNER_SHAPE,
         sheetContent = {
@@ -62,6 +63,7 @@ fun MainScreen() {
         selection = selectionAux.value
 
         Scaffold(
+            modifier = Modifier.fillMaxSize(),
             topBar = { CadernetaTopAppBar() },
             bottomBar = {
                 CadernetaBottomAppBar(
