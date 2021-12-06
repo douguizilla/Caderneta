@@ -21,14 +21,15 @@ fun NewIncome(
             .background(MaterialTheme.colors.background)
             .padding(DEFAULT_PADDING)
     ) {
+        var tagText by remember { mutableStateOf("") }
         var descriptionText by remember { mutableStateOf("") }
         var valueText by remember { mutableStateOf("") }
         var dateText by remember { mutableStateOf("") }
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = descriptionText,
-            onValueChange = { descriptionText = it },
+            value = tagText,
+            onValueChange = { tagText = it },
             label = { Text(text = "Tag") }
         )
 
