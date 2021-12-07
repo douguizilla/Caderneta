@@ -18,6 +18,7 @@ import com.odougle.caderneta.view.components.CadernetaBottomAppBar
 import com.odougle.caderneta.view.components.CadernetaTopAppBar
 import com.odougle.caderneta.view.navigation.BottomNavGraph
 import com.odougle.caderneta.view.screens.bottomSheetDialogs.NewIncome
+import com.odougle.caderneta.view.screens.bottomSheetDialogs.NewOutlay
 
 @ExperimentalMaterialApi
 @Composable
@@ -47,6 +48,9 @@ fun MainScreen() {
         when (selection) {
             1 -> {
                 sheetContent = { NewIncome(bottomSheetState = bottomState) }
+            }
+            2 ->{
+                sheetContent = { NewOutlay(bottomSheetState = bottomState) }
             }
         }
 
