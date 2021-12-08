@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.odougle.caderneta.util.DEFAULT_PADDING
 import kotlinx.coroutines.launch
 
@@ -25,6 +27,19 @@ fun NewIncome(
         var descriptionText by remember { mutableStateOf("") }
         var valueText by remember { mutableStateOf("") }
         var dateText by remember { mutableStateOf("") }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "Adicione uma nova receita",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.SemiBold
+            )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -47,7 +62,7 @@ fun NewIncome(
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
-        ){
+        ) {
             OutlinedTextField(
                 modifier = Modifier.weight(1f),
                 value = valueText,
