@@ -1,19 +1,11 @@
 package com.odougle.caderneta.view
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
-import com.odougle.caderneta.R
-import com.odougle.caderneta.util.DEFAULT_PADDING
 import com.odougle.caderneta.util.TOP_START_AND_TOP_END_ROUNDED_CORNER_SHAPE
-import com.odougle.caderneta.util.SPACER_HEIGHT
 import com.odougle.caderneta.view.components.CadernetaBottomAppBar
 import com.odougle.caderneta.view.components.CadernetaTopAppBar
 import com.odougle.caderneta.view.navigation.BottomNavGraph
