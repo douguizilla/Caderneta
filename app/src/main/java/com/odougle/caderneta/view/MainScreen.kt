@@ -9,6 +9,7 @@ import com.odougle.caderneta.util.TOP_START_AND_TOP_END_ROUNDED_CORNER_SHAPE
 import com.odougle.caderneta.view.components.CadernetaBottomAppBar
 import com.odougle.caderneta.view.components.CadernetaTopAppBar
 import com.odougle.caderneta.view.navigation.BottomNavGraph
+import com.odougle.caderneta.view.screens.bottomSheetDialogs.NewGoal
 import com.odougle.caderneta.view.screens.bottomSheetDialogs.NewIncome
 import com.odougle.caderneta.view.screens.bottomSheetDialogs.NewOutlay
 import com.odougle.caderneta.view.screens.bottomSheetDialogs.Options
@@ -42,8 +43,11 @@ fun MainScreen() {
             1 -> {
                 sheetContent = { NewIncome(bottomSheetState = bottomState) }
             }
-            2 ->{
+            2 -> {
                 sheetContent = { NewOutlay(bottomSheetState = bottomState) }
+            }
+            3 -> {
+                sheetContent = { NewGoal(bottomSheetState = bottomState) }
             }
         }
 
