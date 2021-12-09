@@ -6,17 +6,15 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.odougle.caderneta.util.DEFAULT_PADDING
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
-@Preview
 @Composable
 fun NewGoal(
- //   bottomSheetState: ModalBottomSheetState
+    bottomSheetState: ModalBottomSheetState
 ) {
     val coroutineScope = rememberCoroutineScope()
 
@@ -94,7 +92,7 @@ fun NewGoal(
                 modifier = Modifier.weight(1f),
                 onClick = {
                     coroutineScope.launch {
-//                        bottomSheetState.hide()
+                        bottomSheetState.hide()
                     }
                 }
             ) {
