@@ -4,6 +4,7 @@ data class Goal(
     val tag: String = "meta",
     val description: String,
     val total: Double,
+    val portion: Double,
     val quantity: Int,
     val paid: Int,
     val billingDate: Int,
