@@ -2,6 +2,7 @@ package com.odougle.caderneta.view.screens.lazycolumns.items
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import com.odougle.caderneta.ui.theme.MyGreen
 
 @Composable
 fun IncomeItem(
@@ -9,7 +10,7 @@ fun IncomeItem(
     description: String,
     date: String,
     value: String,
-    color: Color = Color.Green
+    color: Color = MyGreen
 ) {
     BaseItem(
         tag = tag,

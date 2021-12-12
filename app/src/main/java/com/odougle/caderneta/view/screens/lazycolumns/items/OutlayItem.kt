@@ -2,6 +2,7 @@ package com.odougle.caderneta.view.screens.lazycolumns.items
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import com.odougle.caderneta.ui.theme.MyRed
 
 @Composable
 fun OutlayItem(
@@ -9,7 +10,7 @@ fun OutlayItem(
     description: String,
     date: String,
     value: String,
-    color: Color = Color.Red
+    color: Color = MyRed
     ) {
         BaseItem(
             tag = tag,
