@@ -17,16 +17,20 @@ import com.odougle.caderneta.ui.theme.KindaYellow
 import com.odougle.caderneta.util.ALL_SIDES_ROUNDED_CORNER_SHAPE
 import com.odougle.caderneta.util.parseToDP
 
-@Preview
 @Composable
-fun GoalItem() {
+fun GoalItem(
+    description: String,
+    total: Double,
+    portion: Double,
+    quantity: Int,
+    paid: Int,
+    billingDate: Int,
+    creationDate: String,
+    finishDate: String
+) {
     val tag = "meta"
     val color = KindaYellow
-    val value = "1.000"
-    val date = "10/10/2021"
-    val description = "Alguma meta"
-    val paid = 9
-    val portion = 10
+
     Card(
         modifier = Modifier
             .background(color = MaterialTheme.colors.background)
@@ -73,9 +77,9 @@ fun GoalItem() {
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                ItemLine(label = "Total: R$", value = value, color = color)
-                ItemLine(label = "Arrecadado: R$", value = value, color = color)
-                ItemLine(label = "Faltam: R$", value = value, color = color)
+                ItemLine(label = "Total: R$", value = total.toString(), color = color)
+                ItemLine(label = "Arrecadado: R$", value = portion.toString(), color = color)
+                ItemLine(label = "Faltam: R$", value = (total - (portion * paid)).toString(), color = color)
             }
 
             Spacer(modifier = Modifier.height(6.dp))
@@ -85,9 +89,9 @@ fun GoalItem() {
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                ItemLine(label = "Parcela: R$", value = value, color = color)
-                ItemLine(label = "Vencimento: ", value = "10", color = color)
-                ItemLine(label = "Qtd paga: ", value = "$paid/$portion", color = color)
+                ItemLine(label = "Parcela: R$", value = portion.toString(), color = color)
+                ItemLine(label = "Vencimento: ", value = billingDate.toString(), color = color)
+                ItemLine(label = "Qtd paga: ", value = "$paid/$quantity", color = color)
             }
 
             Spacer(modifier = Modifier.height(6.dp))
@@ -97,8 +101,8 @@ fun GoalItem() {
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                ItemLine(label = "Criação: ", value = date, color = color)
-                ItemLine(label = "Previsão de alcance", value = date, color = color)
+                ItemLine(label = "Criação: ", value = creationDate, color = color)
+                ItemLine(label = "Previsão de alcance", value = finishDate, color = color)
             }
 
 
