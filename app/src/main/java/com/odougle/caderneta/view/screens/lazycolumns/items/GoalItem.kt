@@ -77,7 +77,7 @@ fun GoalItem(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 ItemLine(label = "Total: R$", value = total.toString(), color = color)
-                ItemLine(label = "Arrecadado: R$", value = portion.toString(), color = color)
+                ItemLine(label = "Arrecadado: R$", value = (portion * paid).toString(), color = color)
                 ItemLine(label = "Faltam: R$", value = (total - (portion * paid)).toString(), color = color)
             }
 
@@ -116,10 +116,10 @@ fun ItemLine(
     color: Color
 ) {
     Row {
-        Text(text = label, fontSize = 14.sp, color = color)
+        Text(text = label, fontSize = 11.sp, color = color)
 
         Spacer(modifier = Modifier.width(3.dp))
 
-        Text(text = value, fontSize = 14.sp, color = color)
+        Text(text = value, fontSize = 11.sp, color = color)
     }
 }
