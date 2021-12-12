@@ -1,7 +1,6 @@
 package com.odougle.caderneta.model
 
 data class Goal(
-    val tag: String = "meta",
     val description: String,
     val total: Double,
     val portion: Double,
