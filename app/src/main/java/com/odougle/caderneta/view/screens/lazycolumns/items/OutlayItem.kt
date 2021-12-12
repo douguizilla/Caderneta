@@ -11,7 +11,7 @@ fun OutlayItem(
     value: String,
     color: Color = Color.Red
     ) {
-        ItemBase(
+        BaseItem(
             tag = tag,
             description = description,
             date = date,

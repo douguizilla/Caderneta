@@ -17,7 +17,7 @@ import com.odougle.caderneta.util.parseToDP
 
 
 @Composable
-fun ItemBase(
+fun BaseItem(
     tag: String,
     description: String,
     date: String,

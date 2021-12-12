@@ -11,7 +11,7 @@ fun IncomeItem(
     value: String,
     color: Color = Color.Green
 ) {
-    ItemBase(
+    BaseItem(
         tag = tag,
         description = description,
         date = date,
