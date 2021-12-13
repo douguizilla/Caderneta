@@ -71,4 +71,10 @@ dependencies {
 
     //System UI Controller
     implementation "com.google.accompanist:accompanist-systemuicontroller:0.17.0"
+
+    //Room
+    def roomVersion = "2.3.0"
+
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
 }

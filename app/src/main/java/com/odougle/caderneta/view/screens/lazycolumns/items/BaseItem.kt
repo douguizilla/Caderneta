@@ -29,14 +29,14 @@ fun BaseItem(
         modifier = Modifier
             .background(color = MaterialTheme.colors.background)
             .fillMaxWidth()
-            .height(80.dp)
+            .height(70.dp)
             .border(width = 2.dp, color = color, shape = ALL_SIDES_ROUNDED_CORNER_SHAPE)
     ,
         shape = ALL_SIDES_ROUNDED_CORNER_SHAPE
     ) {
         Column(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(12.dp)
                 .fillMaxSize()
         )
         {
@@ -47,7 +47,7 @@ fun BaseItem(
 
                 Card(
                     modifier = Modifier
-                        .height(20.dp)
+                        .height(16.dp)
                         .width(tag.parseToDP())
                         .border(
                             width = 1.dp,
@@ -56,9 +56,9 @@ fun BaseItem(
                         ),
                     shape = ALL_SIDES_ROUNDED_CORNER_SHAPE
                 ) {
-                    Text(text = tag.uppercase(), textAlign = TextAlign.Center, color = color)
+                    Text(text = tag.uppercase(),fontSize = 12.sp, textAlign = TextAlign.Center, color = color)
                 }
-                Text(text = date, color = color)
+                Text(text = date, fontSize = 12.sp, color = color)
             }
 
             Spacer(modifier = Modifier.height(6.dp))
