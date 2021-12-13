@@ -35,7 +35,7 @@ fun GoalItem(
             .background(color = MaterialTheme.colors.background)
             .fillMaxWidth()
             .height(130.dp)
-            .border(width = 2.dp, color = color, shape = ALL_SIDES_ROUNDED_CORNER_SHAPE),
+            .border(width = 1.dp, color = color, shape = ALL_SIDES_ROUNDED_CORNER_SHAPE),
         shape = ALL_SIDES_ROUNDED_CORNER_SHAPE
     ) {
 
