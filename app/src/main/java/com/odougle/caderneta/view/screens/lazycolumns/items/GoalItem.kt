@@ -7,6 +7,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
@@ -41,18 +42,19 @@ fun GoalItem(
 
         Column(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(12.dp)
                 .fillMaxSize()
         )
         {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Start
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically
             ) {
 
                 Card(
                     modifier = Modifier
-                        .height(20.dp)
+                        .height(16.dp)
                         .width(tag.parseToDP())
                         .border(
                             width = 1.dp,
@@ -61,7 +63,7 @@ fun GoalItem(
                         ),
                     shape = ALL_SIDES_ROUNDED_CORNER_SHAPE
                 ) {
-                    Text(text = tag.uppercase(), textAlign = TextAlign.Center, color = color)
+                    Text(text = tag.uppercase(), fontSize = 12.sp, textAlign = TextAlign.Center, color = color)
                 }
 
                 Spacer(modifier = Modifier.width(16.dp))
