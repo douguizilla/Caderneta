@@ -1,4 +1,4 @@
-package com.odougle.caderneta.model
+package com.odougle.caderneta.domain.model
 
 data class Outlay(
     val tag: String,

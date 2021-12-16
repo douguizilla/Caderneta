@@ -3,15 +3,11 @@ package com.odougle.caderneta.view.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.odougle.caderneta.model.Goal
-import com.odougle.caderneta.model.Income
+import com.odougle.caderneta.domain.model.Goal
 import com.odougle.caderneta.view.screens.lazycolumns.items.GoalItem
-import com.odougle.caderneta.view.screens.lazycolumns.items.IncomeItem
 
 @Composable
 fun GoalsScreen() {
