@@ -1,5 +1,8 @@
 package com.odougle.caderneta.domain.model
 
+import androidx.room.Entity
+
+@Entity(tableName = "goal")
 data class Goal(
     val description: String,
     val total: Double,
