@@ -12,6 +12,8 @@ import com.odougle.caderneta.features.domain.model.Outlay
 )
 abstract class Database: RoomDatabase() {
 
+    abstract  val databaseDao: DatabaseDao
+
     companion object{
         const val DATABASE_NAME = "caderneta_db"
     }
