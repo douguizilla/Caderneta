@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface GoalDao {
     @Query("SELECT * FROM goal")
-    fun getGoals(): Flow<List<Goal>>
+    suspend fun getGoals(): Flow<List<Goal>>
 
     @Query("SELECT * FROM goal WHERE id = :id")
     suspend fun getGoalById(id: Int) : Goal?
