@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 interface DatabaseDao {
     //GOAL
     @Query("SELECT * FROM goal")
-    suspend fun getGoals(): Flow<List<Goal>>
+    fun getGoals(): Flow<List<Goal>>
 
     @Query("SELECT * FROM goal WHERE id = :id")
     suspend fun getGoalById(id: Int) : Goal?
@@ -26,7 +26,7 @@ interface DatabaseDao {
     suspend fun getIncomes() : Flow<List<Income>>
 
     @Query("SELECT * FROM income WHERE id = :id")
-    suspend fun getIncomeById(id: Int) : Income?
+    fun getIncomeById(id: Int) : Income?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertIncome(income: Income)
@@ -36,7 +36,7 @@ interface DatabaseDao {
 
     //OUTLAY
     @Query("SELECT * FROM outlay")
-    suspend fun getOutlays() : Flow<List<Outlay>>
+    fun getOutlays() : Flow<List<Outlay>>
 
     @Query("SELECT * FROM outlay WHERE id = :id")
     suspend fun getOutlayById(id: Int) : Outlay?
