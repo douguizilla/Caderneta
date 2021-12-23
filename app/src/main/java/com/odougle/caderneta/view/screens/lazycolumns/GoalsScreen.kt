@@ -6,7 +6,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.odougle.caderneta.domain.model.Goal
+import com.odougle.caderneta.features.domain.model.Goal
 import com.odougle.caderneta.view.screens.lazycolumns.items.GoalItem
 
 @Composable

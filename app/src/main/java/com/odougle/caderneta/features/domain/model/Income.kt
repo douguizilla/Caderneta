@@ -1,4 +1,4 @@
-package com.odougle.caderneta.domain.model
+package com.odougle.caderneta.features.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,5 +9,5 @@ data class Income(
     val description: String,
     val date: String,
     val value: String,
-    @PrimaryKey val id: Int? = null
+    @PrimaryKey(autoGenerate = true) val id: Int
 )

@@ -1,4 +1,4 @@
-package com.odougle.caderneta.domain.model
+package com.odougle.caderneta.features.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -13,5 +13,5 @@ data class Goal(
     val billingDate: Int,
     val creationDate: String,
     val finishDate: String,
-    @PrimaryKey val id: Int? = null
+    @PrimaryKey(autoGenerate = true) val id: Int
 )
