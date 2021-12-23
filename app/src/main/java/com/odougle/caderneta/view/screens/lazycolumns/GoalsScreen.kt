@@ -12,7 +12,7 @@ import com.odougle.caderneta.view.screens.lazycolumns.items.GoalItem
 @Composable
 fun GoalsScreen() {
     val goalsList = listOf(
-        Goal("Viagem", 1000.0, 100.0, 10,2, 10, "10/11/2021", "10/01/2022"),
+        Goal("Viagem", 1000.0, 100.0, 10,2, 10, "10/11/2021", "10/01/2022"urn ),
         Goal("Carro", 1000.0, 100.0, 10,2, 10, "10/11/2021", "10/01/2022"),
         Goal("Dentista", 1000.0, 100.0, 10,2, 10, "10/11/2021", "10/01/2022"),
         Goal("Economia", 1000.0, 100.0, 10,2, 10, "10/11/2021", "10/01/2022"),

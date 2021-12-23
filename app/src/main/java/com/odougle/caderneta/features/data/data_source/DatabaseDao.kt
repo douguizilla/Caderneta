@@ -16,17 +16,17 @@ interface DatabaseDao {
     suspend fun getGoalById(id: Int) : Goal?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertGoal(note: Goal)
+    suspend fun insertGoal(goal: Goal)
 
     @Delete
-    suspend fun deleteGoal(note: Goal)
+    suspend fun deleteGoal(goal: Goal)
 
     //INCOME
     @Query("SELECT * FROM income")
-    suspend fun getIncomes() : Flow<List<Income>>
+    fun getIncomes() : Flow<List<Income>>
 
     @Query("SELECT * FROM income WHERE id = :id")
-    fun getIncomeById(id: Int) : Income?
+    suspend fun getIncomeById(id: Int) : Income?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertIncome(income: Income)
