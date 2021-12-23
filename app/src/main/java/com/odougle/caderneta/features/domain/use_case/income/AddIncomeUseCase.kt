@@ -1,4 +1,4 @@
-package com.odougle.caderneta.features.domain.use_case
+package com.odougle.caderneta.features.domain.use_case.income
 
 import com.odougle.caderneta.features.domain.model.Income
 import com.odougle.caderneta.features.domain.repository.DatabaseRepository
