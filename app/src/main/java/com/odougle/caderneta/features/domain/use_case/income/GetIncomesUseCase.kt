@@ -2,11 +2,13 @@ package com.odougle.caderneta.features.domain.use_case.income
 
 import com.odougle.caderneta.features.domain.model.Income
 import com.odougle.caderneta.features.domain.repository.DatabaseRepository
+import kotlinx.coroutines.flow.Flow
 
-class GetIncomeUseCase (
+class GetIncomesUseCase (
     private val repository: DatabaseRepository
-) {
-    suspend operator fun invoke(id: Int): Income?{
-        return repository.getIncomeById(id)
+)
+{
+    operator fun invoke() : Flow<List<Income>>{
+        return repository.getIncomes()
     }
 }
