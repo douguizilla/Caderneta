@@ -13,5 +13,5 @@ data class Goal(
     val billingDate: Int,
     val creationDate: String,
     val finishDate: String,
-    @PrimaryKey(autoGenerate = true) val id: Int
+    @PrimaryKey(autoGenerate = true) val id: Int = 0
 )
