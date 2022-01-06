@@ -9,5 +9,5 @@ data class Income(
     val description: String,
     val date: String,
     val value: String,
-    @PrimaryKey(autoGenerate = true) val id: Int
+    @PrimaryKey(autoGenerate = true) val id: Int = 0
 )
