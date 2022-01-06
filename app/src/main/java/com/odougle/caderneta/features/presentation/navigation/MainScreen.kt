@@ -1,18 +1,17 @@
-package com.odougle.caderneta.view
+package com.odougle.caderneta.features.presentation.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.odougle.caderneta.features.presentation.util.TOP_START_AND_TOP_END_ROUNDED_CORNER_SHAPE
 import com.odougle.caderneta.features.presentation.components.CadernetaBottomAppBar
 import com.odougle.caderneta.features.presentation.components.CadernetaTopAppBar
-import com.odougle.caderneta.features.presentation.navigation.BottomNavGraph
 import com.odougle.caderneta.features.presentation.screens.bottomSheetDialogs.NewGoal
 import com.odougle.caderneta.features.presentation.screens.bottomSheetDialogs.NewIncome
 import com.odougle.caderneta.features.presentation.screens.bottomSheetDialogs.NewOutlay
 import com.odougle.caderneta.features.presentation.screens.bottomSheetDialogs.Options
+import com.odougle.caderneta.features.presentation.util.TOP_START_AND_TOP_END_ROUNDED_CORNER_SHAPE
 
 @ExperimentalMaterialApi
 @Composable

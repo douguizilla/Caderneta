@@ -8,7 +8,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.odougle.caderneta.ui.theme.CadernetaTheme
-import com.odougle.caderneta.view.MainScreen
+import com.odougle.caderneta.features.presentation.navigation.MainScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
