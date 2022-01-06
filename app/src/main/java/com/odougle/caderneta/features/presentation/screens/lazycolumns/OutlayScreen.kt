@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.odougle.caderneta.features.domain.model.Outlay
-import com.odougle.caderneta.view.screens.lazycolumns.items.OutlayItem
+import com.odougle.caderneta.features.presentation.screens.lazycolumns.items.OutlayItem
 
 @Composable
 fun OutlayScreen() {

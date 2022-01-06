@@ -1,4 +1,4 @@
-package com.odougle.caderneta.view.screens.lazycolumns.items
+package com.odougle.caderneta.features.presentation.screens.lazycolumns.items
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -12,8 +12,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.odougle.caderneta.util.ALL_SIDES_ROUNDED_CORNER_SHAPE
-import com.odougle.caderneta.util.parseToDP
+import com.odougle.caderneta.features.presentation.util.ALL_SIDES_ROUNDED_CORNER_SHAPE
+import com.odougle.caderneta.features.presentation.util.parseToDP
 
 
 @Composable

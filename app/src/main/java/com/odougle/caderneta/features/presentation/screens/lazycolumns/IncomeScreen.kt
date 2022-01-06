@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.odougle.caderneta.features.domain.model.Income
-import com.odougle.caderneta.view.screens.lazycolumns.items.IncomeItem
+import com.odougle.caderneta.features.presentation.screens.lazycolumns.items.IncomeItem
 
 @Composable
 fun IncomeScreen() {

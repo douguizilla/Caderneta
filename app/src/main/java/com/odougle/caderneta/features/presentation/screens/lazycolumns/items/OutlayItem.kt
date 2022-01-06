@@ -1,4 +1,4 @@
-package com.odougle.caderneta.view.screens.lazycolumns.items
+package com.odougle.caderneta.features.presentation.screens.lazycolumns.items
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color

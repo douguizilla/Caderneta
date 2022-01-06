@@ -1,4 +1,4 @@
-package com.odougle.caderneta
+package com.odougle.caderneta.features.presentation
 
 import android.os.Bundle
 import android.view.WindowManager

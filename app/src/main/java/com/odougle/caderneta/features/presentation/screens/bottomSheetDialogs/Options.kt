@@ -1,4 +1,4 @@
-package com.odougle.caderneta.view.screens.bottomSheetDialogs
+package com.odougle.caderneta.features.presentation.screens.bottomSheetDialogs
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,8 +12,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.odougle.caderneta.R
-import com.odougle.caderneta.util.DEFAULT_PADDING
-import com.odougle.caderneta.util.SPACER_HEIGHT
+import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
+import com.odougle.caderneta.features.presentation.util.SPACER_HEIGHT
 
 @Composable
 fun Options(selection: MutableState<Int>) {

@@ -1,4 +1,4 @@
-package com.odougle.caderneta.view.screens.bottomSheetDialogs
+package com.odougle.caderneta.features.presentation.screens.bottomSheetDialogs
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.odougle.caderneta.util.DEFAULT_PADDING
+import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi

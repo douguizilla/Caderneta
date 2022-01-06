@@ -1,8 +1,7 @@
-package com.odougle.caderneta.util
+package com.odougle.caderneta.features.presentation.util
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable

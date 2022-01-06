@@ -1,4 +1,4 @@
-package com.odougle.caderneta.view.screens.bottomSheetDialogs
+package com.odougle.caderneta.features.presentation.screens.bottomSheetDialogs
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -8,12 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.odougle.caderneta.util.DEFAULT_PADDING
+import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
 @Composable
-fun NewGoal(
+fun NewOutlay(
     bottomSheetState: ModalBottomSheetState
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -23,22 +23,30 @@ fun NewGoal(
             .background(MaterialTheme.colors.background)
             .padding(DEFAULT_PADDING)
     ) {
-        val tagText = "meta"
+        var tagText by remember { mutableStateOf("") }
         var descriptionText by remember { mutableStateOf("") }
         var valueText by remember { mutableStateOf("") }
         var dateText by remember { mutableStateOf("") }
-        var billingDate by remember { mutableStateOf("") }
 
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Adicione uma nova meta",
+                text = "Adicione uma nova despesa",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold
             )
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = tagText,
+            onValueChange = { tagText = it },
+            label = { Text(text = "Tag") }
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -59,7 +67,7 @@ fun NewGoal(
                 modifier = Modifier.weight(1f),
                 value = valueText,
                 onValueChange = { valueText = it },
-                label = { Text(text = "Valor total") }
+                label = { Text(text = "Valor") }
             )
 
             Spacer(modifier = Modifier.width(16.dp))
@@ -68,18 +76,9 @@ fun NewGoal(
                 modifier = Modifier.weight(1f),
                 value = dateText,
                 onValueChange = { dateText = it },
-                label = { Text(text = "Valor parcela") }
+                label = { Text(text = "Data") }
             )
         }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = billingDate,
-            onValueChange = { billingDate = it },
-            label = { Text(text = "Data primeira cobrança") }
-        )
 
         Spacer(modifier = Modifier.height(16.dp))
 

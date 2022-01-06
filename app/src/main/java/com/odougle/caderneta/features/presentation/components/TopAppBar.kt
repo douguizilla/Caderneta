@@ -1,4 +1,4 @@
-package com.odougle.caderneta.view.components
+package com.odougle.caderneta.features.presentation.components
 
 import ActionItem
 import ActionMenu

@@ -1,4 +1,4 @@
-package com.odougle.caderneta.view.components
+package com.odougle.caderneta.features.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -22,9 +22,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.odougle.caderneta.R
 import com.odougle.caderneta.ui.theme.AlmostWhite
-import com.odougle.caderneta.util.TOP_START_AND_TOP_END_ROUNDED_CORNER_SHAPE
-import com.odougle.caderneta.util.fromStringRes
-import com.odougle.caderneta.view.navigation.BottomBarScreen
+import com.odougle.caderneta.features.presentation.util.TOP_START_AND_TOP_END_ROUNDED_CORNER_SHAPE
+import com.odougle.caderneta.features.presentation.util.fromStringRes
+import com.odougle.caderneta.features.presentation.navigation.BottomBarScreen
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi

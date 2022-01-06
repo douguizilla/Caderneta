@@ -5,14 +5,14 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.odougle.caderneta.util.TOP_START_AND_TOP_END_ROUNDED_CORNER_SHAPE
-import com.odougle.caderneta.view.components.CadernetaBottomAppBar
-import com.odougle.caderneta.view.components.CadernetaTopAppBar
-import com.odougle.caderneta.view.navigation.BottomNavGraph
-import com.odougle.caderneta.view.screens.bottomSheetDialogs.NewGoal
-import com.odougle.caderneta.view.screens.bottomSheetDialogs.NewIncome
-import com.odougle.caderneta.view.screens.bottomSheetDialogs.NewOutlay
-import com.odougle.caderneta.view.screens.bottomSheetDialogs.Options
+import com.odougle.caderneta.features.presentation.util.TOP_START_AND_TOP_END_ROUNDED_CORNER_SHAPE
+import com.odougle.caderneta.features.presentation.components.CadernetaBottomAppBar
+import com.odougle.caderneta.features.presentation.components.CadernetaTopAppBar
+import com.odougle.caderneta.features.presentation.navigation.BottomNavGraph
+import com.odougle.caderneta.features.presentation.screens.bottomSheetDialogs.NewGoal
+import com.odougle.caderneta.features.presentation.screens.bottomSheetDialogs.NewIncome
+import com.odougle.caderneta.features.presentation.screens.bottomSheetDialogs.NewOutlay
+import com.odougle.caderneta.features.presentation.screens.bottomSheetDialogs.Options
 
 @ExperimentalMaterialApi
 @Composable

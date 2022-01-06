@@ -1,11 +1,11 @@
-package com.odougle.caderneta.view.navigation
+package com.odougle.caderneta.features.presentation.navigation
 
 import androidx.annotation.StringRes
 import com.odougle.caderneta.R
-import com.odougle.caderneta.util.ROUTE_GOALS
-import com.odougle.caderneta.util.ROUTE_HOME
-import com.odougle.caderneta.util.ROUTE_INCOME
-import com.odougle.caderneta.util.ROUTE_OUTLAY
+import com.odougle.caderneta.features.presentation.util.ROUTE_GOALS
+import com.odougle.caderneta.features.presentation.util.ROUTE_HOME
+import com.odougle.caderneta.features.presentation.util.ROUTE_INCOME
+import com.odougle.caderneta.features.presentation.util.ROUTE_OUTLAY
 
 sealed class BottomBarScreen(
     val route: String,

@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.odougle.caderneta.features.domain.model.Goal
-import com.odougle.caderneta.view.screens.lazycolumns.items.GoalItem
+import com.odougle.caderneta.features.presentation.screens.lazycolumns.items.GoalItem
 
 @Composable
 fun GoalsScreen() {

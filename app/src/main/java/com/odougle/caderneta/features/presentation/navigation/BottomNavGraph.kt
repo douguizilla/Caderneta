@@ -1,4 +1,4 @@
-package com.odougle.caderneta.view.navigation
+package com.odougle.caderneta.features.presentation.navigation
 
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
