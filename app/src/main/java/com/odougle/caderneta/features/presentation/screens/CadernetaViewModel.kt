@@ -7,4 +7,5 @@ import javax.inject.Inject
 class CadernetaViewModel @Inject constructor(
     private val cadernetaUseCases: CadernetaUseCases
 ) : ViewModel(){
+
 }
