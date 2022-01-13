@@ -5,9 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "income")
 data class Income(
-    val tag: String,
-    val description: String,
-    val date: String,
-    val value: String,
+    val tag: String = "",
+    val description: String = "",
+    val date: String = "",
+    val value: String = "",
     @PrimaryKey(autoGenerate = true) val id: Int = 0
 )
