@@ -8,13 +8,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.odougle.caderneta.features.presentation.screens.CadernetaViewModel
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
 @Composable
 fun NewIncome(
-    bottomSheetState: ModalBottomSheetState
+    bottomSheetState: ModalBottomSheetState,
+    viewModel: CadernetaViewModel = hiltViewModel()
 ) {
     val coroutineScope = rememberCoroutineScope()
 
