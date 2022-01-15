@@ -9,6 +9,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.odougle.caderneta.features.domain.model.Income
 import com.odougle.caderneta.features.presentation.screens.CadernetaViewModel
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
 import kotlinx.coroutines.launch
@@ -105,7 +106,16 @@ fun NewIncome(
 
             Button(
                 modifier = Modifier.weight(1f),
-                onClick = { }
+                onClick = {
+                    val income = Income(
+                        tag = tagText,
+                        description = descriptionText,
+                        date = dateText,
+                        value = valueText
+                    )
+
+                    viewModel.addIncome(income)
+                }
             ) {
                 Text(text = "ADICIONAR")
             }
