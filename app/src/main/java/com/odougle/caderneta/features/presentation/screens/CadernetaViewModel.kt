@@ -43,6 +43,10 @@ class CadernetaViewModel @Inject constructor(
         }
     }
 
+    fun getIncome(id: Int) = runBlocking {
+        cadernetaUseCases.getIncomeUseCase(id = id)
+    }
+
     fun getIncomes(){
         viewModelScope.launch {
             cadernetaUseCases.getIncomesUseCase().collect { list ->
