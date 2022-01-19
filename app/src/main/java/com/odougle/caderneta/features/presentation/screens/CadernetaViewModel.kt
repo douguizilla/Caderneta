@@ -6,9 +6,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.odougle.caderneta.features.domain.model.Income
+import com.odougle.caderneta.features.domain.model.Outlay
 import com.odougle.caderneta.features.domain.use_case.CadernetaUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -22,8 +22,13 @@ class CadernetaViewModel @Inject constructor(
     private var _incomes : MutableState<List<Income>> = mutableStateOf(listOf())
     val incomes : State<List<Income>> = _incomes
 
+    private var _outlays : MutableState<List<Outlay>> = mutableStateOf(listOf())
+    val outlays : State<List<Outlay>> = _outlays
+
+
     init {
         getIncomes()
+        getOutlays()
     }
 
     fun addIncome(income: Income) {
@@ -46,8 +51,28 @@ class CadernetaViewModel @Inject constructor(
         }
     }
 
-    fun getIncome(id: Int) = runBlocking {
-        cadernetaUseCases.getIncomeUseCase(id = id)
+    fun getOutlay(id: Int) = runBlocking {
+        cadernetaUseCases.getOutlayUseCase(id = id)
+    }
+
+    fun addOutlay(outlay: Outlay) {
+        viewModelScope.launch {
+            cadernetaUseCases.addOutlayUseCase(outlay)
+        }
+    }
+
+    fun deleteOutlay(outlay: Outlay){
+        viewModelScope.launch {
+            cadernetaUseCases.deleteOutlayUseCase(outlay)
+        }
+    }
+
+    fun getOutlays(){
+        viewModelScope.launch {
+            cadernetaUseCases.getOutlaysUseCase().collect { list ->
+                _outlays.value = list
+            }
+        }
     }
 
 }
