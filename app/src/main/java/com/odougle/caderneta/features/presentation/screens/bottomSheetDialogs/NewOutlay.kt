@@ -8,12 +8,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.odougle.caderneta.features.domain.model.Outlay
+import com.odougle.caderneta.features.presentation.navigation.BottomBarScreen
+import com.odougle.caderneta.features.presentation.screens.CadernetaViewModel
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
 @Composable
 fun NewOutlay(
+    viewModel: CadernetaViewModel = hiltViewModel(),
     bottomSheetState: ModalBottomSheetState
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -102,7 +107,16 @@ fun NewOutlay(
 
             Button(
                 modifier = Modifier.weight(1f),
-                onClick = { }
+                onClick = {
+                    val outlay = Outlay(
+                        tag = tagText,
+                        description = descriptionText,
+                        date = dateText,
+                        value = valueText
+                    )
+
+                    viewModel.addOutlay(outlay)
+                }
             ) {
                 Text(text = "ADICIONAR")
             }

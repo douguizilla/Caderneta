@@ -32,6 +32,7 @@ class CadernetaViewModel @Inject constructor(
     init {
         getIncomes()
         getOutlays()
+        getGoals()
     }
 
     fun addIncome(income: Income) {

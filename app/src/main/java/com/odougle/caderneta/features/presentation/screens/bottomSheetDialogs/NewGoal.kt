@@ -8,12 +8,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.odougle.caderneta.features.domain.model.Goal
+import com.odougle.caderneta.features.presentation.screens.CadernetaViewModel
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
 @Composable
 fun NewGoal(
+    viewModel : CadernetaViewModel = hiltViewModel(),
     bottomSheetState: ModalBottomSheetState
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -26,8 +30,9 @@ fun NewGoal(
         val tagText = "meta"
         var descriptionText by remember { mutableStateOf("") }
         var valueText by remember { mutableStateOf("") }
+        var portionValueText by remember{ mutableStateOf("")}
         var dateText by remember { mutableStateOf("") }
-        var billingDate by remember { mutableStateOf("") }
+        var billingDateText by remember { mutableStateOf("") }
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -76,8 +81,8 @@ fun NewGoal(
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = billingDate,
-            onValueChange = { billingDate = it },
+            value = billingDateText,
+            onValueChange = { billingDateText = it },
             label = { Text(text = "Data primeira cobrança") }
         )
 
@@ -103,7 +108,23 @@ fun NewGoal(
 
             Button(
                 modifier = Modifier.weight(1f),
-                onClick = { }
+                onClick = {
+                    val quantity = (valueText.toDouble() / portionValueText.toDouble()).toInt()
+                    val billingDate = "${billingDateText[0]}${billingDateText[1]}".toInt()
+
+                    val goal = Goal(
+                        description = descriptionText,
+                        total = valueText.toDouble(),
+                        portion = portionValueText.toDouble(),
+                        quantity = quantity,
+                        paid = 0,
+                        billingDate = billingDate,
+                        creationDate = dateText,
+                        finishDate = dateText
+                    )
+
+                    viewModel.addGoal(goal)
+                }
             ) {
                 Text(text = "ADICIONAR")
             }
