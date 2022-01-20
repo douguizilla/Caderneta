@@ -5,6 +5,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.odougle.caderneta.features.domain.model.Goal
 import com.odougle.caderneta.features.domain.model.Income
 import com.odougle.caderneta.features.domain.model.Outlay
 import com.odougle.caderneta.features.domain.use_case.CadernetaUseCases
@@ -25,6 +26,8 @@ class CadernetaViewModel @Inject constructor(
     private var _outlays : MutableState<List<Outlay>> = mutableStateOf(listOf())
     val outlays : State<List<Outlay>> = _outlays
 
+    private var _goals : MutableState<List<Goal>> = mutableStateOf(listOf())
+    val goals : State<List<Goal>> = _goals
 
     init {
         getIncomes()
@@ -79,4 +82,27 @@ class CadernetaViewModel @Inject constructor(
         }
     }
 
+    fun getGoal(id: Int) = runBlocking {
+        cadernetaUseCases.getGoalUseCase(id = id)
+    }
+
+    fun addGoal(goal: Goal) {
+        viewModelScope.launch {
+            cadernetaUseCases.addGoalUseCase(goal)
+        }
+    }
+
+    fun deleteGoal(goal: Goal){
+        viewModelScope.launch {
+            cadernetaUseCases.deleteGoalUseCase(goal)
+        }
+    }
+
+    fun getGoals(){
+        viewModelScope.launch {
+            cadernetaUseCases.getGoalsUseCase().collect { list ->
+                _goals.value = list
+            }
+        }
+    }
 }
