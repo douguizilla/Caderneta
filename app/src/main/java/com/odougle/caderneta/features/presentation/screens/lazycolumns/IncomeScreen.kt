@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.SwipeToDismiss
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -49,6 +50,9 @@ fun IncomeScreen(
                 date = income.date,
                 value = income.value
             )
+            SwipeToDismiss(state = , background = ) {
+                
+            }
 
             Spacer(modifier = Modifier.height(8.dp))
         }
