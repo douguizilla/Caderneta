@@ -115,6 +115,10 @@ fun NewIncome(
                     )
 
                     viewModel.addIncome(income)
+
+                    coroutineScope.launch {
+                        bottomSheetState.hide()
+                    }
                 }
             ) {
                 Text(text = "ADICIONAR")

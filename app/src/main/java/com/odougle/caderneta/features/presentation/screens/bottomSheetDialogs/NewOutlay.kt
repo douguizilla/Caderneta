@@ -116,6 +116,10 @@ fun NewOutlay(
                     )
 
                     viewModel.addOutlay(outlay)
+
+                    coroutineScope.launch {
+                        bottomSheetState.hide()
+                    }
                 }
             ) {
                 Text(text = "ADICIONAR")

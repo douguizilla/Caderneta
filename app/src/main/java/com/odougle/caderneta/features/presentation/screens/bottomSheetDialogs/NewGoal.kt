@@ -123,6 +123,10 @@ fun NewGoal(
                     )
 
                     viewModel.addGoal(goal)
+
+                    coroutineScope.launch {
+                        bottomSheetState.hide()
+                    }
                 }
             ) {
                 Text(text = "ADICIONAR")
