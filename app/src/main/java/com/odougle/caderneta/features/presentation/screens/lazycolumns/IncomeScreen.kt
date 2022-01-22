@@ -30,71 +30,81 @@ fun IncomeScreen(
 ) {
     val incomeList = viewModel.incomes.value
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
+    if(incomeList.isEmpty()){
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(text = "Você ainda não possui receita, adicione alguma!")
+        }
+    }else{
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ) {
 
-        items(incomeList, { income: Income -> income.id }) { income ->
-            val dismissState = rememberDismissState()
-            if (dismissState.isDismissed(DismissDirection.EndToStart)) {
-                viewModel.deleteIncome(income)
-            }
-            SwipeToDismiss(
-                state = dismissState,
-                modifier = Modifier
-                    .padding(vertical = Dp(1f)),
-                directions = setOf(
-                    DismissDirection.EndToStart
-                ),
-                dismissThresholds = { direction ->
-                    FractionalThreshold(if (direction == DismissDirection.EndToStart) 0.1f else 0.05f)
-                },
-                background = {
-                    Card(shape = ALL_SIDES_ROUNDED_CORNER_SHAPE){
-                        val color by animateColorAsState(
-                            when (dismissState.targetValue) {
-                                DismissValue.Default -> Color.White
-                                else -> Color.Red
+            items(incomeList, { income: Income -> income.id }) { income ->
+                val dismissState = rememberDismissState()
+                if (dismissState.isDismissed(DismissDirection.EndToStart)) {
+                    viewModel.deleteIncome(income)
+                }
+                SwipeToDismiss(
+                    state = dismissState,
+                    modifier = Modifier
+                        .padding(vertical = Dp(1f)),
+                    directions = setOf(
+                        DismissDirection.EndToStart
+                    ),
+                    dismissThresholds = { direction ->
+                        FractionalThreshold(if (direction == DismissDirection.EndToStart) 0.1f else 0.05f)
+                    },
+                    background = {
+                        Card(shape = ALL_SIDES_ROUNDED_CORNER_SHAPE){
+                            val color by animateColorAsState(
+                                when (dismissState.targetValue) {
+                                    DismissValue.Default -> Color.White
+                                    else -> Color.Red
+                                }
+                            )
+                            val alignment = Alignment.CenterEnd
+                            val icon = Icons.Default.Delete
+
+                            val scale by animateFloatAsState(
+                                if (dismissState.targetValue == DismissValue.Default) 0.75f else 1f
+                            )
+
+                            Box(
+                                Modifier
+                                    .fillMaxSize()
+                                    .background(color)
+                                    .padding(horizontal = Dp(20f)),
+                                contentAlignment = alignment
+                            ) {
+                                Icon(
+                                    icon,
+                                    contentDescription = "Delete Icon",
+                                    modifier = Modifier.scale(scale),
+                                    tint = Color.White
+                                )
                             }
-                        )
-                        val alignment = Alignment.CenterEnd
-                        val icon = Icons.Default.Delete
-
-                        val scale by animateFloatAsState(
-                            if (dismissState.targetValue == DismissValue.Default) 0.75f else 1f
-                        )
-
-                        Box(
-                            Modifier
-                                .fillMaxSize()
-                                .background(color)
-                                .padding(horizontal = Dp(20f)),
-                            contentAlignment = alignment
-                        ) {
-                            Icon(
-                                icon,
-                                contentDescription = "Delete Icon",
-                                modifier = Modifier.scale(scale),
-                                tint = Color.White
+                        }
+                    },
+                    dismissContent = {
+                        Card(shape = ALL_SIDES_ROUNDED_CORNER_SHAPE){
+                            IncomeItem(
+                                tag = income.tag,
+                                description = income.description,
+                                date = income.date,
+                                value = income.value
                             )
                         }
                     }
-                },
-                dismissContent = {
-                    Card(shape = ALL_SIDES_ROUNDED_CORNER_SHAPE){
-                        IncomeItem(
-                            tag = income.tag,
-                            description = income.description,
-                            date = income.date,
-                            value = income.value
-                        )
-                    }
-                }
-            )
+                )
 
-            Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(8.dp))
+            }
         }
     }
 }
