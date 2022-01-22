@@ -50,10 +50,6 @@ fun IncomeScreen(
                 date = income.date,
                 value = income.value
             )
-            SwipeToDismiss(state = , background = ) {
-                
-            }
-
             Spacer(modifier = Modifier.height(8.dp))
         }
     }

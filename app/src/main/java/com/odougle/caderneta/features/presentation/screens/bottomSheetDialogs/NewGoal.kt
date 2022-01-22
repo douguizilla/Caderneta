@@ -31,7 +31,6 @@ fun NewGoal(
         var descriptionText by remember { mutableStateOf("") }
         var valueText by remember { mutableStateOf("") }
         var portionValueText by remember{ mutableStateOf("")}
-        var dateText by remember { mutableStateOf("") }
         var billingDateText by remember { mutableStateOf("") }
 
         Row(
@@ -71,8 +70,8 @@ fun NewGoal(
 
             OutlinedTextField(
                 modifier = Modifier.weight(1f),
-                value = dateText,
-                onValueChange = { dateText = it },
+                value = portionValueText,
+                onValueChange = { portionValueText = it },
                 label = { Text(text = "Valor parcela") }
             )
         }
@@ -119,8 +118,8 @@ fun NewGoal(
                         quantity = quantity,
                         paid = 0,
                         billingDate = billingDate,
-                        creationDate = dateText,
-                        finishDate = dateText
+                        creationDate = billingDateText,
+                        finishDate = billingDateText //need to calculabe by quantity
                     )
 
                     viewModel.addGoal(goal)
