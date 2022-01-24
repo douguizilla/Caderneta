@@ -1,19 +1,27 @@
 package com.odougle.caderneta.features.presentation.screens.bottomSheetDialogs
 
+import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.odougle.caderneta.features.domain.model.Income
+import com.odougle.caderneta.features.presentation.components.TextField.DateTextField
 import com.odougle.caderneta.features.presentation.screens.CadernetaViewModel
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
 import kotlinx.coroutines.launch
 
+@RequiresApi(Build.VERSION_CODES.O)
 @ExperimentalMaterialApi
 @Composable
 fun NewIncome(
@@ -21,7 +29,7 @@ fun NewIncome(
     viewModel: CadernetaViewModel = hiltViewModel()
 ) {
     val coroutineScope = rememberCoroutineScope()
-
+    val context = LocalContext.current
     Column(
         modifier = Modifier
             .background(MaterialTheme.colors.background)
@@ -30,7 +38,7 @@ fun NewIncome(
         var tagText by remember { mutableStateOf("") }
         var descriptionText by remember { mutableStateOf("") }
         var valueText by remember { mutableStateOf("") }
-        var dateText by remember { mutableStateOf("") }
+        var dateText : MutableState<String> = mutableStateOf("")
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -76,12 +84,13 @@ fun NewIncome(
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            OutlinedTextField(
-                modifier = Modifier.weight(1f),
-                value = dateText,
-                onValueChange = { dateText = it },
-                label = { Text(text = "Data") }
-            )
+            DateTextField(
+                modifier = Modifier
+                    .weight(1f),
+                textValue = dateText
+            ) { Text(text = "Data") }
+
+
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -110,7 +119,7 @@ fun NewIncome(
                     val income = Income(
                         tag = tagText,
                         description = descriptionText,
-                        date = dateText,
+                        date = dateText.value,
                         value = valueText
                     )
 
