@@ -9,6 +9,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.odougle.caderneta.features.domain.model.Outlay
 import com.odougle.caderneta.features.presentation.components.TextField.DateTextField
 import com.odougle.caderneta.features.presentation.navigation.BottomBarScreen
@@ -19,8 +20,9 @@ import kotlinx.coroutines.launch
 @ExperimentalMaterialApi
 @Composable
 fun NewOutlay(
-    viewModel: CadernetaViewModel = hiltViewModel(),
-    bottomSheetState: ModalBottomSheetState
+    navController: NavHostController,
+    bottomSheetState: ModalBottomSheetState,
+    viewModel: CadernetaViewModel = hiltViewModel()
 ) {
     val coroutineScope = rememberCoroutineScope()
 
@@ -117,6 +119,8 @@ fun NewOutlay(
                     )
 
                     viewModel.addOutlay(outlay)
+
+                    navController.navigate(BottomBarScreen.Outlay.route)
 
                     coroutineScope.launch {
                         bottomSheetState.hide()

@@ -14,9 +14,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.odougle.caderneta.features.domain.model.Income
 import com.odougle.caderneta.features.presentation.components.TextField.DateTextField
+import com.odougle.caderneta.features.presentation.navigation.BottomBarScreen
 import com.odougle.caderneta.features.presentation.screens.CadernetaViewModel
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
 import kotlinx.coroutines.launch
@@ -25,6 +28,7 @@ import kotlinx.coroutines.launch
 @ExperimentalMaterialApi
 @Composable
 fun NewIncome(
+    navController: NavHostController,
     bottomSheetState: ModalBottomSheetState,
     viewModel: CadernetaViewModel = hiltViewModel()
 ) {
@@ -123,6 +127,8 @@ fun NewIncome(
                     )
 
                     viewModel.addIncome(income)
+
+                    navController.navigate(BottomBarScreen.Income.route)
 
                     coroutineScope.launch {
                         bottomSheetState.hide()

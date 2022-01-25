@@ -40,13 +40,13 @@ fun MainScreen() {
 
         when (selection) {
             1 -> {
-                sheetContent = { NewIncome(bottomSheetState = bottomState) }
+                sheetContent = { NewIncome(navController = navController, bottomSheetState = bottomState) }
             }
             2 -> {
-                sheetContent = { NewOutlay(bottomSheetState = bottomState) }
+                sheetContent = { NewOutlay(navController = navController, bottomSheetState = bottomState) }
             }
             3 -> {
-                sheetContent = { NewGoal(bottomSheetState = bottomState) }
+                sheetContent = { NewGoal(navController = navController, bottomSheetState = bottomState) }
             }
         }
 

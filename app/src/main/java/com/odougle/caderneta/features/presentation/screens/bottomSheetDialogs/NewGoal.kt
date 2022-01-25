@@ -10,8 +10,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.odougle.caderneta.features.domain.model.Goal
 import com.odougle.caderneta.features.presentation.components.TextField.DateTextField
+import com.odougle.caderneta.features.presentation.navigation.BottomBarScreen
 import com.odougle.caderneta.features.presentation.screens.CadernetaViewModel
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
 import kotlinx.coroutines.launch
@@ -19,8 +21,9 @@ import kotlinx.coroutines.launch
 @ExperimentalMaterialApi
 @Composable
 fun NewGoal(
-    viewModel : CadernetaViewModel = hiltViewModel(),
-    bottomSheetState: ModalBottomSheetState
+    navController: NavHostController,
+    bottomSheetState: ModalBottomSheetState,
+    viewModel: CadernetaViewModel = hiltViewModel()
 ) {
     val coroutineScope = rememberCoroutineScope()
 
@@ -32,8 +35,8 @@ fun NewGoal(
         val tagText = "meta"
         var descriptionText by remember { mutableStateOf("") }
         var valueText by remember { mutableStateOf("") }
-        var portionValueText by remember{ mutableStateOf("")}
-        var billingDateText : MutableState<String> = remember{ mutableStateOf("")}
+        var portionValueText by remember { mutableStateOf("") }
+        var billingDateText: MutableState<String> = remember { mutableStateOf("") }
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -60,7 +63,7 @@ fun NewGoal(
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
-        ){
+        ) {
             OutlinedTextField(
                 modifier = Modifier.weight(1f),
                 value = valueText,
@@ -83,7 +86,7 @@ fun NewGoal(
         DateTextField(
             modifier = Modifier.fillMaxWidth(),
             textValue = billingDateText,
-            label = { Text(text = "Data")}
+            label = { Text(text = "Data") }
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -110,7 +113,8 @@ fun NewGoal(
                 modifier = Modifier.weight(1f),
                 onClick = {
                     val quantity = (valueText.toDouble() / portionValueText.toDouble()).toInt()
-                    val billingDate = "${billingDateText.value[0]}${billingDateText.value[1]}".toInt()
+                    val billingDate =
+                        "${billingDateText.value[0]}${billingDateText.value[1]}".toInt()
 
                     val goal = Goal(
                         description = descriptionText,
@@ -124,6 +128,8 @@ fun NewGoal(
                     )
 
                     viewModel.addGoal(goal)
+
+                    navController.navigate(BottomBarScreen.Goals.route)
 
                     coroutineScope.launch {
                         bottomSheetState.hide()
