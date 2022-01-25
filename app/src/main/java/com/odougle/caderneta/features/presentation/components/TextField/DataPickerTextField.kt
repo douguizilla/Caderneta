@@ -19,7 +19,7 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun DateTextField(
     textValue: MutableState<String>,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     label: @Composable () -> Unit
 ) {
     val dialogState = rememberMaterialDialogState()

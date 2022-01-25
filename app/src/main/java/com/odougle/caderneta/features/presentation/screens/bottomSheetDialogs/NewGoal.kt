@@ -5,11 +5,13 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.odougle.caderneta.features.domain.model.Goal
+import com.odougle.caderneta.features.presentation.components.TextField.DateTextField
 import com.odougle.caderneta.features.presentation.screens.CadernetaViewModel
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
 import kotlinx.coroutines.launch
@@ -31,7 +33,7 @@ fun NewGoal(
         var descriptionText by remember { mutableStateOf("") }
         var valueText by remember { mutableStateOf("") }
         var portionValueText by remember{ mutableStateOf("")}
-        var billingDateText by remember { mutableStateOf("") }
+        var billingDateText : MutableState<String> = remember{ mutableStateOf("")}
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -78,11 +80,10 @@ fun NewGoal(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        OutlinedTextField(
+        DateTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = billingDateText,
-            onValueChange = { billingDateText = it },
-            label = { Text(text = "Data primeira cobrança") }
+            textValue = billingDateText,
+            label = { Text(text = "Data")}
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -109,7 +110,7 @@ fun NewGoal(
                 modifier = Modifier.weight(1f),
                 onClick = {
                     val quantity = (valueText.toDouble() / portionValueText.toDouble()).toInt()
-                    val billingDate = "${billingDateText[0]}${billingDateText[1]}".toInt()
+                    val billingDate = "${billingDateText.value[0]}${billingDateText.value[1]}".toInt()
 
                     val goal = Goal(
                         description = descriptionText,
@@ -118,8 +119,8 @@ fun NewGoal(
                         quantity = quantity,
                         paid = 0,
                         billingDate = billingDate,
-                        creationDate = billingDateText,
-                        finishDate = billingDateText //need to calculabe by quantity
+                        creationDate = billingDateText.value,
+                        finishDate = billingDateText.value //need to calculabe by quantity
                     )
 
                     viewModel.addGoal(goal)
