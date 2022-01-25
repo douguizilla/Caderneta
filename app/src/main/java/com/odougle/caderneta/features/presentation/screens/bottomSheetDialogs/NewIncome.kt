@@ -38,7 +38,7 @@ fun NewIncome(
         var tagText by remember { mutableStateOf("") }
         var descriptionText by remember { mutableStateOf("") }
         var valueText by remember { mutableStateOf("") }
-        var dateText : MutableState<String> = mutableStateOf("")
+        var dateText : MutableState<String> = remember { mutableStateOf("") }
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -85,11 +85,10 @@ fun NewIncome(
             Spacer(modifier = Modifier.width(16.dp))
 
             DateTextField(
-                modifier = Modifier
-                    .weight(1f),
-                textValue = dateText
-            ) { Text(text = "Data") }
-
+                modifier = Modifier.weight(1f),
+                textValue = dateText,
+                label = { Text(text = "Data")}
+            )
 
         }
 

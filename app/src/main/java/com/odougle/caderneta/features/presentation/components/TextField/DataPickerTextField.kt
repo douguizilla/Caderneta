@@ -4,13 +4,15 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import com.vanpra.composematerialdialogs.MaterialDialog
-import com.vanpra.composematerialdialogs.datetime.datepicker
+import com.vanpra.composematerialdialogs.datetime.date.datepicker
+import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import java.time.format.DateTimeFormatter
 
 
@@ -20,10 +22,16 @@ fun DateTextField(
     modifier: Modifier,
     label: @Composable () -> Unit
 ) {
-    val dialog = MaterialDialog()
-
-    dialog.build {
-        datepicker{ date ->
+    val dialogState = rememberMaterialDialogState()
+    MaterialDialog(
+        dialogState = dialogState,
+        buttons = {
+            positiveButton("Ok")
+            negativeButton("Cancelar")
+        }
+    ){
+        datepicker{
+                date ->
             val formattedDate = date.format(
                 DateTimeFormatter.ofPattern("dd/MM/yyyy")
             )
@@ -32,9 +40,10 @@ fun DateTextField(
     }
 
     ReadOnlyTextField(
+        modifier = modifier,
         value = textValue.value,
         onValueChange = {textValue.value = it},
-        onClick = { dialog.show() },
+        onClick = { dialogState.show() },
         label = label
     )
 }
@@ -43,22 +52,24 @@ fun DateTextField(
 fun ReadOnlyTextField(
     value: String,
     onValueChange : (String) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier,
     onClick: () -> Unit,
     label: @Composable () -> Unit
 ) {
-    Box{
-        OutlinedTextField(
-            modifier = modifier,
-            value = value,
-            onValueChange = onValueChange,
-            label = label
-        )
+    Row(modifier = modifier) {
+        Box{
+            OutlinedTextField(
+                modifier = modifier,
+                value = value,
+                onValueChange = onValueChange,
+                label = label
+            )
 
-        Box(
-            modifier = Modifier
-                .matchParentSize()
-                .clickable(onClick = onClick)
-        )
+            Box(
+                modifier = Modifier
+                    .matchParentSize()
+                    .clickable(onClick = onClick)
+            )
+        }
     }
 }
