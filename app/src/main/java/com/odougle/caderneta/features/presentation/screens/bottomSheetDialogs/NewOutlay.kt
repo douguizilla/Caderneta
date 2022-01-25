@@ -10,6 +10,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.odougle.caderneta.features.domain.model.Outlay
+import com.odougle.caderneta.features.presentation.components.TextField.DateTextField
 import com.odougle.caderneta.features.presentation.navigation.BottomBarScreen
 import com.odougle.caderneta.features.presentation.screens.CadernetaViewModel
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
@@ -31,7 +32,7 @@ fun NewOutlay(
         var tagText by remember { mutableStateOf("") }
         var descriptionText by remember { mutableStateOf("") }
         var valueText by remember { mutableStateOf("") }
-        var dateText by remember { mutableStateOf("") }
+        var dateText : MutableState<String> = remember{ mutableStateOf("")}
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -77,12 +78,12 @@ fun NewOutlay(
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            OutlinedTextField(
+            DateTextField(
                 modifier = Modifier.weight(1f),
-                value = dateText,
-                onValueChange = { dateText = it },
-                label = { Text(text = "Data") }
+                textValue = dateText,
+                label = { Text(text = "Data")}
             )
+
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -111,7 +112,7 @@ fun NewOutlay(
                     val outlay = Outlay(
                         tag = tagText,
                         description = descriptionText,
-                        date = dateText,
+                        date = dateText.value,
                         value = valueText
                     )
 
