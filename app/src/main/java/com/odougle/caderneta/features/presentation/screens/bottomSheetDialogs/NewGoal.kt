@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -16,7 +15,8 @@ import com.odougle.caderneta.features.presentation.components.TextField.DateText
 import com.odougle.caderneta.features.presentation.navigation.BottomBarScreen
 import com.odougle.caderneta.features.presentation.screens.CadernetaViewModel
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
-import com.odougle.caderneta.features.presentation.util.*
+import com.odougle.caderneta.features.presentation.util.calculateFinishDate
+import com.odougle.caderneta.features.presentation.util.getDay
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
@@ -116,7 +116,7 @@ fun NewGoal(
                     val quantity = (valueText.toDouble() / portionValueText.toDouble()).toInt()
                     val billingDate =
                         getDay(billingDateText.value).toInt()
-
+                    val finishDate = calculateFinishDate(billingDateText.value, quantity)
                     val goal = Goal(
                         description = descriptionText,
                         total = valueText.toDouble(),
@@ -125,7 +125,7 @@ fun NewGoal(
                         paid = 0,
                         billingDate = billingDate,
                         creationDate = billingDateText.value,
-                        finishDate = billingDateText.value //need to calculabe by quantity
+                        finishDate = finishDate //need to calculabe by quantity
                     )
 
                     viewModel.addGoal(goal)
