@@ -26,7 +26,8 @@ import com.odougle.caderneta.features.presentation.util.ALL_SIDES_ROUNDED_CORNER
 @ExperimentalMaterialApi
 @Composable
 fun GoalsScreen(
-    viewModel: CadernetaViewModel = hiltViewModel()
+    viewModel: CadernetaViewModel = hiltViewModel(),
+    paddingValues: PaddingValues
 ) {
     val goalsList = viewModel.goals.value
     if(goalsList.isEmpty()){
@@ -41,7 +42,8 @@ fun GoalsScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(16.dp),
+            contentPadding = paddingValues
         ) {
 
             items(goalsList, { goal: Goal -> goal.id }) { goal ->

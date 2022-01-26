@@ -26,7 +26,8 @@ import com.odougle.caderneta.features.presentation.util.ALL_SIDES_ROUNDED_CORNER
 @ExperimentalMaterialApi
 @Composable
 fun OutlayScreen(
-    viewModel: CadernetaViewModel = hiltViewModel()
+    viewModel: CadernetaViewModel = hiltViewModel(),
+    paddingValues: PaddingValues
 ) {
     val outlayList = viewModel.outlays.value
     if(outlayList.isEmpty()){
@@ -41,7 +42,8 @@ fun OutlayScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(16.dp),
+            contentPadding = paddingValues
         ) {
 
             items(outlayList, { outlay: Outlay -> outlay.id }) { outlay ->

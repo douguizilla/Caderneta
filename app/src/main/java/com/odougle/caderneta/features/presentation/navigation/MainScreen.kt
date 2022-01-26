@@ -36,7 +36,7 @@ fun MainScreen() {
             sheetContent()
         }
     ) {
-        BottomNavGraph(navHostController = navController)
+        //BottomNavGraph(navHostController = navController)
 
         when (selection) {
             1 -> {
@@ -71,10 +71,8 @@ fun MainScreen() {
                     bottomState = bottomState
                 )
             }
-        ) {
-            BottomNavGraph(navHostController = navController)
+        ) { paddingValues ->
+            BottomNavGraph(navHostController = navController, paddingValues = paddingValues)
         }
-
-
     }
 }

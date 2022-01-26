@@ -1,5 +1,6 @@
 package com.odougle.caderneta.features.presentation.navigation
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -10,25 +11,25 @@ import com.odougle.caderneta.view.screens.HomeScreen
 
 @ExperimentalMaterialApi
 @Composable
-fun BottomNavGraph(navHostController: NavHostController) {
+fun BottomNavGraph(navHostController: NavHostController, paddingValues: PaddingValues) {
     NavHost(
         navController = navHostController,
         startDestination = BottomBarScreen.Home.route
     ) {
         composable(route = BottomBarScreen.Home.route){
-            HomeScreen()
+            HomeScreen(paddingValues = paddingValues)
         }
 
         composable(route = BottomBarScreen.Income.route){
-            IncomeScreen()
+            IncomeScreen(paddingValues = paddingValues)
         }
 
         composable(route = BottomBarScreen.Outlay.route){
-            OutlayScreen()
+            OutlayScreen(paddingValues = paddingValues)
         }
 
         composable(route = BottomBarScreen.Goals.route){
-            GoalsScreen()
+            GoalsScreen(paddingValues = paddingValues)
         }
     }
 }

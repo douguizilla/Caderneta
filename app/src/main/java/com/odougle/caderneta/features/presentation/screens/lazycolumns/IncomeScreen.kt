@@ -22,18 +22,35 @@ import com.odougle.caderneta.features.domain.model.Income
 import com.odougle.caderneta.features.presentation.screens.CadernetaViewModel
 import com.odougle.caderneta.features.presentation.screens.lazycolumns.items.IncomeItem
 import com.odougle.caderneta.features.presentation.util.ALL_SIDES_ROUNDED_CORNER_SHAPE
+import java.util.*
 
 @ExperimentalMaterialApi
 @Composable
 fun IncomeScreen(
-    viewModel: CadernetaViewModel = hiltViewModel()
+    viewModel: CadernetaViewModel = hiltViewModel(),
+    paddingValues: PaddingValues
 ) {
     val incomeList = viewModel.incomes.value
-
+//    val incomeList = listOf(
+//        Income("receita", "salario", "10/10/2021", "2.000,00",1),
+//        Income("receita", "freela", "11/10/2021", "1.000,00",2),
+//        Income("receita", "bico", "10/11/2021", "2.200,00"),3,
+//        Income("receita", "investimento", "09/10/2021", "5.000,00",4),
+//        Income("receita", "salario", "07/10/2008", "4.000,00",5),
+//        Income("receita", "salario", "10/10/2021", "2.000,00",6),
+//        Income("receita", "freela", "11/10/2021", "1.000,00",7),
+//        Income("receita", "bico", "10/11/2021", "2.200,00",8),
+//        Income("receita", "investimento", "09/10/2021", "5.000,00",9),
+//        Income("receita", "salario", "07/10/2008", "4.000,00",10),
+//        Income("receita", "salario", "10/10/2021", "2.000,00",11),
+//        Income("receita", "freela", "11/10/2021", "1.000,00",12),
+//        Income("receita", "bico", "10/11/2021", "2.200,00",13),
+//        Income("receita", "investimento", "09/10/2021", "5.000,00",14),
+//        Income("receita", "salario", "07/10/2008", "4.000,00",15),
+//    )
     if(incomeList.isEmpty()){
         Box(
-            modifier = Modifier
-                .fillMaxSize(),
+
             contentAlignment = Alignment.Center
         ) {
             Text(text = "Você ainda não possui receita, adicione alguma!")
@@ -42,7 +59,8 @@ fun IncomeScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(16.dp),
+            contentPadding = paddingValues
         ) {
 
             items(incomeList, { income: Income -> income.id }) { income ->
