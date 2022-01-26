@@ -16,6 +16,7 @@ import com.odougle.caderneta.features.presentation.components.TextField.DateText
 import com.odougle.caderneta.features.presentation.navigation.BottomBarScreen
 import com.odougle.caderneta.features.presentation.screens.CadernetaViewModel
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
+import com.odougle.caderneta.features.presentation.util.*
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
@@ -114,7 +115,7 @@ fun NewGoal(
                 onClick = {
                     val quantity = (valueText.toDouble() / portionValueText.toDouble()).toInt()
                     val billingDate =
-                        "${billingDateText.value[0]}${billingDateText.value[1]}".toInt()
+                        getDay(billingDateText.value).toInt()
 
                     val goal = Goal(
                         description = descriptionText,
