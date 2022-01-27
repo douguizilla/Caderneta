@@ -10,6 +10,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,7 +29,7 @@ import com.odougle.caderneta.features.presentation.util.ALL_SIDES_ROUNDED_CORNER
 fun IncomeScreen(
     viewModel: CadernetaViewModel = hiltViewModel(),
     paddingValues: PaddingValues,
-    sheetContent: @Composable () -> Unit,
+    sheetContent: MutableState<(@Composable () -> Unit)>,
     bottomState: ModalBottomSheetState
 ) {
     val incomeList = viewModel.incomes.value

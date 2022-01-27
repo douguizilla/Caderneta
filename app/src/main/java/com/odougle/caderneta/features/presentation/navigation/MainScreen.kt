@@ -26,25 +26,25 @@ fun MainScreen() {
         Options(selection = selectionAux)
     }
 
-    var sheetContent by remember { mutableStateOf(content) }
+    var sheetContent : MutableState<(@Composable ()-> Unit)> = remember { mutableStateOf(content) }
 
     ModalBottomSheetLayout(
         modifier = Modifier.fillMaxSize(),
         sheetState = bottomState,
         sheetShape = TOP_START_AND_TOP_END_ROUNDED_CORNER_SHAPE,
         sheetContent = {
-            sheetContent()
+            sheetContent.value()
         }
     ) {
         when (selection) {
             1 -> {
-                sheetContent = { NewIncome(navController = navController, bottomSheetState = bottomState) }
+                sheetContent.value =  {NewIncome(navController = navController, bottomSheetState = bottomState) }
             }
             2 -> {
-                sheetContent = { NewOutlay(navController = navController, bottomSheetState = bottomState) }
+                sheetContent.value = { NewOutlay(navController = navController, bottomSheetState = bottomState) }
             }
             3 -> {
-                sheetContent = { NewGoal(navController = navController, bottomSheetState = bottomState) }
+                sheetContent.value = { NewGoal(navController = navController, bottomSheetState = bottomState) }
             }
         }
 
@@ -53,7 +53,7 @@ fun MainScreen() {
         } else {
             selection = 0
             selectionAux.value = 0
-            sheetContent = {
+            sheetContent.value = {
                 Options(selection = selectionAux)
             }
         }

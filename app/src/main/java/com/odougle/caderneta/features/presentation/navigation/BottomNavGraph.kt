@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,7 +16,7 @@ import com.odougle.caderneta.view.screens.HomeScreen
 fun BottomNavGraph(
     navHostController: NavHostController,
     paddingValues: PaddingValues,
-    sheetContent: @Composable () -> Unit,
+    sheetContent: MutableState<(@Composable () -> Unit)>,
     bottomState: ModalBottomSheetState
 ) {
     NavHost(
