@@ -22,13 +22,14 @@ import com.odougle.caderneta.features.domain.model.Income
 import com.odougle.caderneta.features.presentation.screens.CadernetaViewModel
 import com.odougle.caderneta.features.presentation.screens.lazycolumns.items.IncomeItem
 import com.odougle.caderneta.features.presentation.util.ALL_SIDES_ROUNDED_CORNER_SHAPE
-import java.util.*
 
 @ExperimentalMaterialApi
 @Composable
 fun IncomeScreen(
     viewModel: CadernetaViewModel = hiltViewModel(),
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    sheetContent: @Composable () -> Unit,
+    bottomState: ModalBottomSheetState
 ) {
     val incomeList = viewModel.incomes.value
 //    val incomeList = listOf(

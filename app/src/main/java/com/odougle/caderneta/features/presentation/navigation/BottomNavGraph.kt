@@ -2,6 +2,7 @@ package com.odougle.caderneta.features.presentation.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -11,25 +12,46 @@ import com.odougle.caderneta.view.screens.HomeScreen
 
 @ExperimentalMaterialApi
 @Composable
-fun BottomNavGraph(navHostController: NavHostController, paddingValues: PaddingValues) {
+fun BottomNavGraph(
+    navHostController: NavHostController,
+    paddingValues: PaddingValues,
+    sheetContent: @Composable () -> Unit,
+    bottomState: ModalBottomSheetState
+) {
     NavHost(
         navController = navHostController,
         startDestination = BottomBarScreen.Home.route
     ) {
         composable(route = BottomBarScreen.Home.route){
-            HomeScreen(paddingValues = paddingValues)
+            HomeScreen(
+                paddingValues = paddingValues,
+                sheetContent = sheetContent,
+                bottomState = bottomState
+            )
         }
 
         composable(route = BottomBarScreen.Income.route){
-            IncomeScreen(paddingValues = paddingValues)
+            IncomeScreen(
+                paddingValues = paddingValues,
+                sheetContent = sheetContent,
+                bottomState = bottomState
+            )
         }
 
         composable(route = BottomBarScreen.Outlay.route){
-            OutlayScreen(paddingValues = paddingValues)
+            OutlayScreen(
+                paddingValues = paddingValues,
+                sheetContent = sheetContent,
+                bottomState = bottomState
+            )
         }
 
         composable(route = BottomBarScreen.Goals.route){
-            GoalsScreen(paddingValues = paddingValues)
+            GoalsScreen(
+                paddingValues = paddingValues,
+                sheetContent = sheetContent,
+                bottomState = bottomState
+            )
         }
     }
 }

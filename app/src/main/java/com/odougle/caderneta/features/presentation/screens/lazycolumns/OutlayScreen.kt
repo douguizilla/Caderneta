@@ -27,7 +27,9 @@ import com.odougle.caderneta.features.presentation.util.ALL_SIDES_ROUNDED_CORNER
 @Composable
 fun OutlayScreen(
     viewModel: CadernetaViewModel = hiltViewModel(),
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    sheetContent: @Composable () -> Unit,
+    bottomState: ModalBottomSheetState
 ) {
     val outlayList = viewModel.outlays.value
     if(outlayList.isEmpty()){
