@@ -50,7 +50,8 @@ fun IncomeScreen(
 //    )
     if(incomeList.isEmpty()){
         Box(
-
+            modifier = Modifier
+            .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
             Text(text = "Você ainda não possui receita, adicione alguma!")
