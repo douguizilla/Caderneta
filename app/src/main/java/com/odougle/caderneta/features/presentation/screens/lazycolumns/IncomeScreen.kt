@@ -3,26 +3,34 @@ package com.odougle.caderneta.view.screens
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.odougle.caderneta.features.domain.model.Goal
 import com.odougle.caderneta.features.domain.model.Income
+import com.odougle.caderneta.features.domain.model.Outlay
+import com.odougle.caderneta.features.presentation.components.TextField.DateTextField
 import com.odougle.caderneta.features.presentation.screens.CadernetaViewModel
 import com.odougle.caderneta.features.presentation.screens.lazycolumns.items.IncomeItem
 import com.odougle.caderneta.features.presentation.util.ALL_SIDES_ROUNDED_CORNER_SHAPE
+import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
+import com.odougle.caderneta.features.presentation.util.calculateFinishDate
+import com.odougle.caderneta.features.presentation.util.getDay
+import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
 @Composable
@@ -33,6 +41,7 @@ fun IncomeScreen(
     bottomState: ModalBottomSheetState
 ) {
     val incomeList = viewModel.incomes.value
+    val coroutineScope = rememberCoroutineScope()
 //    val incomeList = listOf(
 //        Income("receita", "salario", "10/10/2021", "2.000,00",1),
 //        Income("receita", "freela", "11/10/2021", "1.000,00",2),
@@ -113,7 +122,19 @@ fun IncomeScreen(
                         }
                     },
                     dismissContent = {
-                        Card(shape = ALL_SIDES_ROUNDED_CORNER_SHAPE){
+                        Card(
+                            modifier = Modifier
+                                .clickable {
+                                    coroutineScope.launch {
+                                        sheetContent.value = {
+                                            EditIncome(income = income, bottomState = bottomState)
+                                        }
+
+                                        bottomState.show()
+                                    }
+                                },
+                            shape = ALL_SIDES_ROUNDED_CORNER_SHAPE
+                        ){
                             IncomeItem(
                                 tag = income.tag,
                                 description = income.description,
@@ -126,6 +147,121 @@ fun IncomeScreen(
 
                 Spacer(modifier = Modifier.height(8.dp))
             }
+        }
+    }
+}
+
+@ExperimentalMaterialApi
+@Composable
+fun EditIncome(
+    income: Income,
+    bottomState: ModalBottomSheetState,
+    viewModel: CadernetaViewModel = hiltViewModel()
+) {
+    Column(
+        modifier = Modifier
+            .background(MaterialTheme.colors.background)
+            .padding(DEFAULT_PADDING)
+    ) {
+        val coroutineScope = rememberCoroutineScope()
+        var tagText by remember { mutableStateOf(income.tag) }
+        var descriptionText by remember { mutableStateOf(income.description) }
+        var valueText by remember { mutableStateOf(income.value) }
+        var dateText : MutableState<String> = remember{ mutableStateOf(income.date) }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "Edição de despesa",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.SemiBold
+            )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = tagText,
+            onValueChange = { tagText = it },
+            label = { Text(text = "Tag") }
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = descriptionText,
+            onValueChange = { descriptionText = it },
+            label = { Text(text = "Descrição") }
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            OutlinedTextField(
+                modifier = Modifier.weight(1f),
+                value = valueText,
+                onValueChange = { valueText = it },
+                label = { Text(text = "Valor") }
+            )
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            DateTextField(
+                modifier = Modifier.weight(1f),
+                textValue = dateText,
+                label = { Text(text = "Data")}
+            )
+
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Button(
+                modifier = Modifier.weight(1f),
+                onClick = {
+                    coroutineScope.launch {
+                        bottomState.hide()
+                    }
+                }
+            ) {
+                Text(text = "CANCELAR")
+            }
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            Button(
+                modifier = Modifier.weight(1f),
+                onClick = {
+                    val incomeEdited = Income(
+                        id = income.id,
+                        tag = tagText,
+                        description = descriptionText,
+                        date = dateText.value,
+                        value = valueText
+                    )
+
+                    viewModel.addIncome(incomeEdited)
+
+                    coroutineScope.launch {
+                        bottomState.hide()
+                    }
+                }
+            ) {
+                Text(text = "ADICIONAR")
+            }
+
         }
     }
 }

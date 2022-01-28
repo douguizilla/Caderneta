@@ -71,7 +71,9 @@ fun GoalsScreen(
                         DismissDirection.EndToStart
                     ),
                     dismissThresholds = { direction ->
-                        FractionalThreshold(if (direction == DismissDirection.EndToStart) 0.1f else 0.05f)
+                        FractionalThreshold(
+                            if (direction == DismissDirection.EndToStart) 0.1f else 0.05f
+                        )
                     },
                     background = {
                         Card(shape = ALL_SIDES_ROUNDED_CORNER_SHAPE){
