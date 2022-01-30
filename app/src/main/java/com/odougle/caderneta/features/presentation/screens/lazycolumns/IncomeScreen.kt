@@ -4,17 +4,21 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -30,6 +34,7 @@ import com.odougle.caderneta.features.presentation.util.ALL_SIDES_ROUNDED_CORNER
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
 import com.odougle.caderneta.features.presentation.util.calculateFinishDate
 import com.odougle.caderneta.features.presentation.util.getDay
+import com.odougle.caderneta.ui.theme.MyGreen
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
@@ -42,6 +47,7 @@ fun IncomeScreen(
 ) {
     val incomeList = viewModel.incomes.value
     val coroutineScope = rememberCoroutineScope()
+
 //    val incomeList = listOf(
 //        Income("receita", "salario", "10/10/2021", "2.000,00",1),
 //        Income("receita", "freela", "11/10/2021", "1.000,00",2),
@@ -122,16 +128,26 @@ fun IncomeScreen(
                         }
                     },
                     dismissContent = {
+                        val color : MutableState<Color> = remember{ mutableStateOf(MyGreen)}
+                        val backgroundColor : MutableState<Color> = remember{ mutableStateOf(Color.White)}
                         Card(
                             modifier = Modifier
-                                .clickable {
-                                    coroutineScope.launch {
-                                        sheetContent.value = {
-                                            EditIncome(income = income, bottomState = bottomState)
-                                        }
+                                .pointerInput(Unit){
+                                    detectTapGestures(
+                                        onLongPress = {
+                                            backgroundColor.value = MyGreen
+                                            color.value = Color.White
+                                        },
+                                        onTap = {
+                                            coroutineScope.launch {
+                                                sheetContent.value = {
+                                                    EditIncome(income = income, bottomState = bottomState)
+                                                }
 
-                                        bottomState.show()
-                                    }
+                                                bottomState.show()
+                                            }
+                                        }
+                                    )
                                 },
                             shape = ALL_SIDES_ROUNDED_CORNER_SHAPE
                         ){
@@ -139,7 +155,9 @@ fun IncomeScreen(
                                 tag = income.tag,
                                 description = income.description,
                                 date = income.date,
-                                value = income.value
+                                value = income.value,
+                                color = color,
+                                backgroundColor = backgroundColor
                             )
                         }
                     }
@@ -151,6 +169,7 @@ fun IncomeScreen(
     }
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @ExperimentalMaterialApi
 @Composable
 fun EditIncome(

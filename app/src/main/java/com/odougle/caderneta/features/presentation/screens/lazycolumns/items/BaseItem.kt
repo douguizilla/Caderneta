@@ -23,19 +23,19 @@ fun BaseItem(
     date: String,
     value: String,
     isValuePositive: Boolean,
-    color: Color = Color.Gray
+    color: Color,
+    backgroundColor: Color
 ) {
     Card(
         modifier = Modifier
-            .background(color = MaterialTheme.colors.background)
             .fillMaxWidth()
             .height(70.dp)
-            .border(width = 1.dp, color = color, shape = ALL_SIDES_ROUNDED_CORNER_SHAPE)
-    ,
+            .border(width = 1.dp, color = color, shape = ALL_SIDES_ROUNDED_CORNER_SHAPE),
         shape = ALL_SIDES_ROUNDED_CORNER_SHAPE
     ) {
         Column(
             modifier = Modifier
+                .background(color = backgroundColor)
                 .padding(12.dp)
                 .fillMaxSize()
         )
@@ -56,7 +56,14 @@ fun BaseItem(
                         ),
                     shape = ALL_SIDES_ROUNDED_CORNER_SHAPE
                 ) {
-                    Text(text = tag.uppercase(),fontSize = 12.sp, textAlign = TextAlign.Center, color = color)
+                    Text(
+                        modifier = Modifier
+                            .background(color = backgroundColor),
+                        text = tag.uppercase(),
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center,
+                        color = color
+                    )
                 }
                 Text(text = date, fontSize = 12.sp, color = color)
             }
