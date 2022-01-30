@@ -102,7 +102,7 @@ fun GoalItem(
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                ItemLine(label = "Criação: ", value = creationDate, color = color)
+                ItemLine(label = "Venc: ", value = creationDate, color = color)
                 ItemLine(label = "Previsão de alcance", value = finishDate, color = color)
             }
 
