@@ -136,10 +136,14 @@ fun IncomeScreen(
                                                 backgroundColor.value = MyGreen
                                                 color.value = Color.White
                                                 topBarState.value = TopBarType.Delete
+                                                viewModel.selectIncome(income)
                                             }else{
                                                 backgroundColor.value = Color.White
                                                 color.value = MyGreen
-                                                topBarState.value = TopBarType.Default
+                                                viewModel.unselectIncome(income)
+                                                if(viewModel.selectedIncomes.value.count() == 0) {
+                                                    topBarState.value = TopBarType.Default
+                                                }
                                             }
                                             longPress = !longPress
                                         },

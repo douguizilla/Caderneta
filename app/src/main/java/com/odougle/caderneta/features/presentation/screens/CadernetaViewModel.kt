@@ -29,6 +29,10 @@ class CadernetaViewModel @Inject constructor(
     private var _goals : MutableState<List<Goal>> = mutableStateOf(listOf())
     val goals : State<List<Goal>> = _goals
 
+    var selectedIncomes : MutableState<MutableList<Income>> = mutableStateOf(mutableListOf())
+    var selectedIncomesCount : MutableState<Int> = mutableStateOf(0)
+    var selectedIncomesCountText : MutableState<String> = mutableStateOf("0")
+
     init {
         getIncomes()
         getOutlays()
@@ -106,4 +110,17 @@ class CadernetaViewModel @Inject constructor(
             }
         }
     }
+
+    fun selectIncome(income: Income){
+        selectedIncomes.value.add(income)
+        selectedIncomesCount.value++
+        selectedIncomesCountText.value = "${selectedIncomesCount.value}"
+    }
+
+    fun unselectIncome(income: Income){
+        selectedIncomes.value.remove(income)
+        selectedIncomesCount.value--
+        selectedIncomesCountText.value = "${selectedIncomesCount.value}"
+    }
+
 }
