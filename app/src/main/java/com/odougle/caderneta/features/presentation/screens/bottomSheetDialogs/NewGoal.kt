@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -19,6 +20,7 @@ import com.odougle.caderneta.features.presentation.util.calculateFinishDate
 import com.odougle.caderneta.features.presentation.util.getDay
 import kotlinx.coroutines.launch
 
+@ExperimentalComposeUiApi
 @ExperimentalMaterialApi
 @Composable
 fun NewGoal(
@@ -33,7 +35,6 @@ fun NewGoal(
             .background(MaterialTheme.colors.background)
             .padding(DEFAULT_PADDING)
     ) {
-        val tagText = "meta"
         var descriptionText by remember { mutableStateOf("") }
         var valueText by remember { mutableStateOf("") }
         var portionValueText by remember { mutableStateOf("") }

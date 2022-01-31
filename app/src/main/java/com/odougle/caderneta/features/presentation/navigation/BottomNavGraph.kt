@@ -5,19 +5,23 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.odougle.caderneta.features.presentation.components.Bar.TopBarType
 import com.odougle.caderneta.view.screens.*
 import com.odougle.caderneta.view.screens.HomeScreen
 
+@ExperimentalComposeUiApi
 @ExperimentalMaterialApi
 @Composable
 fun BottomNavGraph(
     navHostController: NavHostController,
     paddingValues: PaddingValues,
-    sheetContent: MutableState<(@Composable () -> Unit)>,
-    bottomState: ModalBottomSheetState
+    sheetContent: MutableState<@Composable () -> Unit>,
+    bottomState: ModalBottomSheetState,
+    topBar: MutableState<TopBarType>
 ) {
     NavHost(
         navController = navHostController,
@@ -35,7 +39,8 @@ fun BottomNavGraph(
             IncomeScreen(
                 paddingValues = paddingValues,
                 sheetContent = sheetContent,
-                bottomState = bottomState
+                bottomState = bottomState,
+                topBarState = topBar
             )
         }
 

@@ -3,8 +3,10 @@ package com.odougle.caderneta.features.presentation.navigation
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.odougle.caderneta.features.presentation.components.Bar.TopBarType
 import com.odougle.caderneta.features.presentation.components.CadernetaBottomAppBar
 import com.odougle.caderneta.features.presentation.components.CadernetaTopAppBar
 import com.odougle.caderneta.features.presentation.screens.bottomSheetDialogs.NewGoal
@@ -13,11 +15,14 @@ import com.odougle.caderneta.features.presentation.screens.bottomSheetDialogs.Ne
 import com.odougle.caderneta.features.presentation.screens.bottomSheetDialogs.Options
 import com.odougle.caderneta.features.presentation.util.TOP_START_AND_TOP_END_ROUNDED_CORNER_SHAPE
 
+@ExperimentalComposeUiApi
 @ExperimentalMaterialApi
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
     val bottomState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
+
+    val topBar : MutableState<TopBarType> = remember{ mutableStateOf(TopBarType.Default)}
 
     val selectionAux = remember { mutableStateOf(0) }
     var selection by remember { mutableStateOf(0) }
@@ -62,7 +67,7 @@ fun MainScreen() {
 
         Scaffold(
             modifier = Modifier.fillMaxSize(),
-            topBar = { CadernetaTopAppBar() },
+            topBar = { CadernetaTopAppBar(topBar) },
             bottomBar = {
                 CadernetaBottomAppBar(
                     navController = navController,
@@ -74,7 +79,8 @@ fun MainScreen() {
                 navHostController = navController,
                 paddingValues = paddingValues,
                 sheetContent,
-                bottomState
+                bottomState,
+                topBar
             )
         }
     }

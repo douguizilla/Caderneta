@@ -3,12 +3,10 @@ package com.odougle.caderneta.view.screens
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
@@ -24,16 +22,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.odougle.caderneta.features.domain.model.Goal
 import com.odougle.caderneta.features.domain.model.Income
-import com.odougle.caderneta.features.domain.model.Outlay
+import com.odougle.caderneta.features.presentation.components.Bar.TopBarType
 import com.odougle.caderneta.features.presentation.components.TextField.DateTextField
 import com.odougle.caderneta.features.presentation.screens.CadernetaViewModel
 import com.odougle.caderneta.features.presentation.screens.lazycolumns.items.IncomeItem
 import com.odougle.caderneta.features.presentation.util.ALL_SIDES_ROUNDED_CORNER_SHAPE
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
-import com.odougle.caderneta.features.presentation.util.calculateFinishDate
-import com.odougle.caderneta.features.presentation.util.getDay
 import com.odougle.caderneta.ui.theme.MyGreen
 import kotlinx.coroutines.launch
 
@@ -43,7 +38,8 @@ fun IncomeScreen(
     viewModel: CadernetaViewModel = hiltViewModel(),
     paddingValues: PaddingValues,
     sheetContent: MutableState<(@Composable () -> Unit)>,
-    bottomState: ModalBottomSheetState
+    bottomState: ModalBottomSheetState,
+    topBarState: MutableState<TopBarType>
 ) {
     val incomeList = viewModel.incomes.value
     val coroutineScope = rememberCoroutineScope()
@@ -130,13 +126,22 @@ fun IncomeScreen(
                     dismissContent = {
                         val color : MutableState<Color> = remember{ mutableStateOf(MyGreen)}
                         val backgroundColor : MutableState<Color> = remember{ mutableStateOf(Color.White)}
+                        var longPress = true
                         Card(
                             modifier = Modifier
                                 .pointerInput(Unit){
                                     detectTapGestures(
                                         onLongPress = {
-                                            backgroundColor.value = MyGreen
-                                            color.value = Color.White
+                                            if (longPress) {
+                                                backgroundColor.value = MyGreen
+                                                color.value = Color.White
+                                                topBarState.value = TopBarType.Delete
+                                            }else{
+                                                backgroundColor.value = Color.White
+                                                color.value = MyGreen
+                                                topBarState.value = TopBarType.Default
+                                            }
+                                            longPress = !longPress
                                         },
                                         onTap = {
                                             coroutineScope.launch {

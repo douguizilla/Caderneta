@@ -12,6 +12,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
@@ -29,6 +30,7 @@ import com.odougle.caderneta.features.presentation.util.ALL_SIDES_ROUNDED_CORNER
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
 import kotlinx.coroutines.launch
 
+@ExperimentalComposeUiApi
 @ExperimentalMaterialApi
 @Composable
 fun OutlayScreen(
@@ -106,10 +108,12 @@ fun OutlayScreen(
                             modifier = Modifier
                                 .clickable {
                                     coroutineScope.launch {
-                                        sheetContent.value = { EditOutlay(
-                                            outlay = outlay,
-                                            bottomState = bottomState
-                                        )}
+                                        sheetContent.value = {
+                                            EditOutlay(
+                                                outlay = outlay,
+                                             bottomState = bottomState
+                                            )
+                                        }
                                         bottomState.show()
                                     }
                                 },
@@ -131,6 +135,7 @@ fun OutlayScreen(
     }
 }
 
+@ExperimentalComposeUiApi
 @ExperimentalMaterialApi
 @Composable
 fun EditOutlay(
