@@ -1,5 +1,7 @@
 package com.odougle.caderneta.view.screens
 
+import android.os.Handler
+import android.os.Looper
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
@@ -30,7 +32,10 @@ import com.odougle.caderneta.features.presentation.screens.lazycolumns.items.Inc
 import com.odougle.caderneta.features.presentation.util.ALL_SIDES_ROUNDED_CORNER_SHAPE
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
 import com.odougle.caderneta.ui.theme.MyGreen
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlin.coroutines.coroutineContext
 
 @ExperimentalMaterialApi
 @Composable
@@ -43,6 +48,7 @@ fun IncomeScreen(
 ) {
     val incomeList = viewModel.incomes.value
     val coroutineScope = rememberCoroutineScope()
+    var count = 0
 
 //    val incomeList = listOf(
 //        Income("receita", "salario", "10/10/2021", "2.000,00",1),
@@ -133,14 +139,15 @@ fun IncomeScreen(
                                     detectTapGestures(
                                         onLongPress = {
                                             if (longPress) {
+                                                viewModel.selectIncome(income)
                                                 backgroundColor.value = MyGreen
                                                 color.value = Color.White
                                                 topBarState.value = TopBarType.Delete
                                                 viewModel.selectIncome(income)
                                             }else{
+                                                viewModel.unselectIncome(income)
                                                 backgroundColor.value = Color.White
                                                 color.value = MyGreen
-                                                viewModel.unselectIncome(income)
                                                 if(viewModel.selectedIncomes.value.count() == 0) {
                                                     topBarState.value = TopBarType.Default
                                                 }
