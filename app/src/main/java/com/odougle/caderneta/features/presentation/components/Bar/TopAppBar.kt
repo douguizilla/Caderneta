@@ -66,9 +66,6 @@ fun CadernetaTopAppBar(
                     doAction = { deleteAction() })
             )
 
-            var count by remember{ mutableStateOf(0) }
-            count = viewModel.selectedIncomesCount.value
-
             TopAppBar(
                 title = {
                     Row(
@@ -80,11 +77,11 @@ fun CadernetaTopAppBar(
                                 contentDescription = "Remover seleções"
                             )
                         }
-                        Text(text = "$count")
+                        Text(text = "${viewModel.selectedIncomesCount.value}")
 
                         Spacer(modifier = Modifier.width(16.dp))
 
-                        Text(text = if (count > 1) "selecionados" else "selecionado")
+                        Text(text = if (viewModel.selectedIncomesCount.value > 1) "selecionados" else "selecionado")
                     }
                 },
                 backgroundColor = Color.White,
