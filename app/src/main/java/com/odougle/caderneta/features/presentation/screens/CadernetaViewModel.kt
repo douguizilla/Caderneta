@@ -29,7 +29,7 @@ class CadernetaViewModel @Inject constructor(
 
     var selectedIncomes : MutableState<MutableList<Income>> = mutableStateOf(mutableListOf())
 
-    var selectedIncomesCount  by mutableStateOf(0)
+    var selectedIncomesCount : MutableState<Int> = mutableStateOf(0)
     //val selectedIncomesCount = _selectedIncomesCount
 
     init {
@@ -112,12 +112,12 @@ class CadernetaViewModel @Inject constructor(
 
     fun selectIncome(income: Income){
         selectedIncomes.value.add(income)
-        selectedIncomesCount= selectedIncomesCount + 1
+        selectedIncomesCount.value++
     }
 
     fun unselectIncome(income: Income){
         selectedIncomes.value.remove(income)
-        selectedIncomesCount = selectedIncomesCount - 1
+        selectedIncomesCount.value--
     }
 
 }
