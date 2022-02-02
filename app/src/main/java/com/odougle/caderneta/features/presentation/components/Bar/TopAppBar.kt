@@ -75,11 +75,11 @@ fun CadernetaTopAppBar(
                                 contentDescription = "Remover seleções"
                             )
                         }
-                        Text(text = "${viewModel.selectedIncomesCount.value}")
+                        Text(text = "${viewModel.selectedIncomesCount}")
 
                         Spacer(modifier = Modifier.width(16.dp))
 
-                        Text(text = if (viewModel.selectedIncomesCount.value > 1) "selecionados" else "selecionado")
+                        Text(text = if (viewModel.selectedIncomesCount > 1) "selecionados" else "selecionado")
                     }
                 },
                 backgroundColor = Color.White,

@@ -1,8 +1,6 @@
 package com.odougle.caderneta.features.presentation.screens
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.odougle.caderneta.features.domain.model.Goal
@@ -30,8 +28,9 @@ class CadernetaViewModel @Inject constructor(
     val goals : State<List<Goal>> = _goals
 
     var selectedIncomes : MutableState<MutableList<Income>> = mutableStateOf(mutableListOf())
-    var selectedIncomesCount : MutableState<Int> = mutableStateOf(0)
-    var selectedIncomesCountText : MutableState<String> = mutableStateOf("0")
+
+    var selectedIncomesCount  by mutableStateOf(0)
+    //val selectedIncomesCount = _selectedIncomesCount
 
     init {
         getIncomes()
@@ -113,14 +112,13 @@ class CadernetaViewModel @Inject constructor(
 
     fun selectIncome(income: Income){
         selectedIncomes.value.add(income)
-        selectedIncomesCount.value++
-        selectedIncomesCountText.value = "${selectedIncomesCount.value}"
+        selectedIncomesCount= selectedIncomesCount + 1
     }
 
     fun unselectIncome(income: Income){
         selectedIncomes.value.remove(income)
-        selectedIncomesCount.value--
-        selectedIncomesCountText.value = "${selectedIncomesCount.value}"
+        selectedIncomesCount = selectedIncomesCount - 1
     }
 
 }
+
