@@ -148,7 +148,7 @@ fun IncomeScreen(
                                                 viewModel.unselectIncome(income)
                                                 backgroundColor.value = Color.White
                                                 color.value = MyGreen
-                                                if(viewModel.selectedIncomes.value.count() == 0) {
+                                                if(viewModel.selectedIncomesCount.value == 0) {
                                                     topBarState.value = TopBarType.Default
                                                 }
                                             }

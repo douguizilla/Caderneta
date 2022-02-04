@@ -120,5 +120,22 @@ class CadernetaViewModel @Inject constructor(
         selectedIncomesCount.value--
     }
 
+    fun calculateIncomes(): Double {
+        val incomes = _incomes.value
+        var sum = 0.0
+        for(income in incomes){
+            sum += income.value.toDouble()
+        }
+        return sum
+    }
+
+    fun calculateOutlays() : Double{
+        val outlays = _outlays.value
+        var sum = 0.0
+        for(outlay in outlays){
+            sum += outlay.value.toDouble()
+        }
+        return sum
+    }
 }
 
