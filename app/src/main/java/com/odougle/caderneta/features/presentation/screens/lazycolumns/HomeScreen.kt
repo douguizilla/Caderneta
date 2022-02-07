@@ -37,7 +37,7 @@ fun HomeScreen(
 
         MoneyBar(income = incomeValue, outlay = outlayValue)
 
-        MoneyBarLabel(incomeValue, outlayValue)
+        MoneyBarLabel(income = incomeValue, outlay = outlayValue)
 
     }
 }
