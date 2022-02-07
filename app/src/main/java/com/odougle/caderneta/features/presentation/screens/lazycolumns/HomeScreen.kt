@@ -37,20 +37,27 @@ fun HomeScreen(
 
         MoneyBar(income = incomeValue, outlay = outlayValue)
 
-        Box{
-            Row(modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Start
-            ) {
-                Text(text = "$incomeValue")
-            }
+        MoneyBarLabel(incomeValue, outlayValue)
 
-            Row(modifier =  Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.End
-            ) {
-                Text(text = "$outlayValue ")
-            }
+    }
+}
+
+@Composable
+private fun MoneyBarLabel(income: Double, outlay: Double) {
+    Box {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Start
+        ) {
+            Text(text = "$income")
         }
 
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
+        ) {
+            Text(text = "$outlay")
+        }
     }
 }
 
@@ -84,7 +91,5 @@ fun MoneyBar(
                 Text("")
             }
         }
-
-
     }
 }
