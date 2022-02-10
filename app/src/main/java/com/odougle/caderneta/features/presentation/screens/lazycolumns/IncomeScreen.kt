@@ -1,7 +1,5 @@
 package com.odougle.caderneta.view.screens
 
-import android.os.Handler
-import android.os.Looper
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
@@ -32,10 +30,7 @@ import com.odougle.caderneta.features.presentation.screens.lazycolumns.items.Inc
 import com.odougle.caderneta.features.presentation.util.ALL_SIDES_ROUNDED_CORNER_SHAPE
 import com.odougle.caderneta.features.presentation.util.DEFAULT_PADDING
 import com.odougle.caderneta.ui.theme.MyGreen
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import kotlin.coroutines.coroutineContext
 
 @ExperimentalMaterialApi
 @Composable
