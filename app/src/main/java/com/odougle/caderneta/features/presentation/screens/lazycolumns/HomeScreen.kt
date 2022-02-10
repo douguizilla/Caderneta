@@ -49,14 +49,16 @@ private fun MoneyBarLabel(income: Double, outlay: Double) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Start
         ) {
-            Text(text = "$income")
+            Text(text = " R$ ${income}0")
         }
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End
-        ) {
-            Text(text = "$outlay")
+        if(outlay > 0) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                Text(text = "R$ ${outlay}0")
+            }
         }
     }
 }
